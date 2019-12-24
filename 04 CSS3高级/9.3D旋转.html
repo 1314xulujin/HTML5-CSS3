@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            /*设置舞台距离*/
+            perspective: 1000px;
+
+            transform-style: preserve-3d;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 50px auto;
+            transition: all 0.35s;
+        }
+
+        .box:nth-child(1):hover{
+            transform: rotateX(360deg);
+        }
+        .box:nth-child(2):hover{
+            transform: rotateY(360deg);
+        }
+        .box:nth-child(3):hover{
+            transform: rotateZ(360deg);
+        }
+        .box:nth-child(4):hover{
+            /**前面三个参数, 矢量值 ,最后一个参考的基数角度*/
+            transform: rotate3d(1,1,1,180deg);
+        }
+        .box:nth-child(5):hover{
+            /**建议: 方便控制*/
+            transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+        }
+    </style>
+</head>
+<body>
+<div class="box">rotateX</div>
+<div class="box">rotateY</div>
+<div class="box">rotateZ</div>
+<div class="box">rotate3d</div>
+<div class="box">rotatex ,y ,z</div>
+</body>
+</html>

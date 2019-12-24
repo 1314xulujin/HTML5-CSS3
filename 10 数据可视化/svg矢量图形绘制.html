@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid red;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <svg xmlns="http://www.w3.org/2000/svg" width="300px" height="100px">
+        <rect x="0" y="0" width="300" height="100" fill="pink" stroke-width="1" />
+        <circle cx="0" cy="50" r="15" fill="blue" stroke="black" stroke-width="1">
+            <animate attributeName="cx" from="0" to="300" dur="1s" repeatCount="indefinite" />
+        </circle>
+    </svg>
+</div>
+<img src="img/a.svg" alt="">
+<img src="img/c.svg" alt="">
+    <div class="container">
+        <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <circle cx="200" cy="200" r="50" stroke="green" stroke-width="2" fill="red"></circle>
+        </svg>
+    </div>
+    
+</body>
+</html>

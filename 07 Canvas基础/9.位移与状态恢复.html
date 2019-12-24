@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas"); //获取canvas画布
+    var cxt = canvas.getContext("2d");// 获取canvas画笔 (获取canvas上下文环境)
+
+
+    //所有的canvas画笔状态都是统一使用的 ,如果有一处更改则全局更改 = > 全局变量
+
+    cxt.save();
+    //更改原点坐标 (使用位移)
+    cxt.translate(200,200);
+
+    cxt.arc(0,0,10,0,Math.PI*2);
+    cxt.fill();
+
+    //在绘制需要旋转效果的图像上 ,先备份画笔的状态, 等画完之后, 恢复到备份之前的状态
+    cxt.save();//备份画笔状态
+    //缩放
+    cxt.scale(0.5,0.5);
+    //设置旋转 ( 弧度制)  旋转中心在原点坐标上
+    cxt.rotate(40 * (Math.PI/180));
+    cxt.fillRect(200,200,100,100);
+
+    //恢复画笔状态
+    cxt.restore();
+    cxt.restore();
+    cxt.fillRect(300,300,100,100);
+</script>
+</body>
+</html>

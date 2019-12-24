@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="js/jquery-v1.12.0.js"></script>
+<script>
+    //使用ajax 获取test.css 样式
+
+    //定义一个获取静态资源文件的方法
+    function getCss(url){
+        var style = window.localStorage.getItem(url);
+        if(style){
+            createStyle(style);
+        }else{
+            $.get(url,function(res){
+                createStyle(res);
+                //把当前的url地址的文件存储到本地缓存
+                window.localStorage.setItem(url,res);
+            })
+        }
+
+    }
+    function createStyle(style){
+        var styleElement = $("<style>"+style+"</style>");
+        $("head").append(styleElement);
+    }
+    getCss("./css/test.css");
+
+</script>
+</body>
+</html>

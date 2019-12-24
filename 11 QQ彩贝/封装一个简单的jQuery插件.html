@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            position: absolute;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮</button>
+    <div class="box"></div>
+<script src="js/jquery-v1.12.0.js"></script>
+<script src="js/hello.js"></script>
+<script>
+    $("button").click(function () {
+        // $(".box").css("background","red");
+        $(".box").bg("red").animate({
+            left:1000
+        },5000);
+    })
+
+    //如果说只是想扩展自身方法,那就直接使用扩展即可
+    // jQuery.music = function () {
+    //     console.log('少时诵诗书');
+    // }
+
+    jQuery.extend({
+        music : function () {
+                console.log('少时诵诗书');
+            }
+    })
+</script>
+</body>
+</html>

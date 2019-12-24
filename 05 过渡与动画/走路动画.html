@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @keyframes walk {
+            0%{
+                background-position: -640px 0;
+            }
+            100%{
+                background-position: 0 0;
+            }
+        }
+        .man{
+            width: 80px;
+            height: 100px;
+            margin: 100px auto;
+            background: url("images/man.png");
+            animation: walk 0.5s steps(8) infinite;
+        }
+    </style>
+</head>
+<body>
+        <div class="man"></div>
+</body>
+</html>

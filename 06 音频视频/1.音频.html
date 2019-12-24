@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<audio src="media/song.mp3" controls autoplay preload="none">
+    您的浏览器版本太低,请<a href="https://baidu.com">点击升级!</a>
+</audio>
+
+<audio controls>
+    <source src="media/song.wav">
+    <source src="media/song.mp3">
+    <source src="media/song.ogg">
+</audio>
+<hr>
+<p>1. controls  播放控件</p>
+<p>2.autoplay 自动播放</p>
+<p>3. loop  循环播放 (单曲循环)</p>
+<p>4.preload : 设置浏览器加载音频文件的时刻 :
+    auto:网页加载完加载音频文件
+    metadata:网页加载时只加载音频文件的元数据 (音频文件的基本信息:时长,作家这类的...)
+    none:网页加载时不加载音频文件, 只有点击播放时才加载
+</p>
+<hr>
+<p>关于浏览器用户规则:</p>
+<p>如果页面打开,未产生用户的交互行为, 浏览器不允许各类音频 / 全屏功能的接口调用.</p>
+</body>
+</html>

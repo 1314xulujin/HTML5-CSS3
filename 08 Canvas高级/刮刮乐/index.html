@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            position: relative;
+            width: 592px;
+            height: 287px;
+            margin: 50px auto;
+            border: 1px solid red;
+        }
+
+        .goods,.layer{
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 1s;
+        }
+
+        .layer.hide{
+            opacity: 0;
+        }
+
+        #test{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1000;
+            font: 50px "微软雅黑";
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!--奖项-->
+        <div class="goods">
+            <canvas id="goodsCanvas" width="590" height="285"></canvas>
+            <span id="test"></span>
+        </div>
+        <!--遮罩层-->
+        <div class="layer">
+            <canvas id="layerCanvas" width="590" height="285"></canvas>
+        </div>
+    </div>
+    <script>
+        var goodsCanvas = document.getElementById("goodsCanvas");
+        var layerCanvas = document.getElementById("layerCanvas");
+        var testSpan = document.getElementById("test");
+        var sx,sy,ex,ey;
+        var r = 20; //擦除的圆的半径
+        var isClear = false;
+        var count = 0; //总共的像素点
+        var x,y,w,h; //文字区域的坐标 , 宽高
+
+        //绘制奖项 - > 模拟奖项
+        var goods = ["支付宝全年花呗免还",'华为Mate 30','小米手机MIX2','谢谢惠顾'];
+        var goodsCtx = goodsCanvas.getContext("2d");
+        // 奖项结果的背景图片
+        var goodsBg = new Image();
+            goodsBg.src = "images/lucky.jpg";
+            goodsBg.onload = function(){
+                goodsCtx.drawImage(goodsBg,0,0);
+                //绘制中奖文字信息
+                goodsCtx.textAlign = "center";
+                goodsCtx.textBaseline = "middle";
+                goodsCtx.font="50px 微软雅黑";
+                goodsCtx.fillStyle="red";
+                goodsCtx.shadowBlur = 5;
+                goodsCtx.shadowColor = "gold";
+                var text = goods[parseInt(Math.random()*goods.length)];
+                goodsCtx.fillText(text,295,142.5);
+                //计算span的宽高
+                testSpan.innerHTML = text;
+                //获取 w, h
+                w = Math.floor(testSpan.offsetWidth);
+                h = Math.floor(testSpan.offsetHeight);
+                x = Math.floor((goodsCanvas.width - w)/2);
+                y = Math.floor((goodsCanvas.height - h)/2);
+                //计算文字区域 面积
+                count = w * h;
+            }
+
+        //绘制遮罩层
+        var layerCtx = layerCanvas.getContext("2d");
+        var layerBg = new Image();
+            layerBg.src="images/layer.png";
+            layerBg.onload = function(){
+                layerCtx.drawImage(layerBg,0,0);
+            }
+
+        layerCanvas.onmousedown = function(e){
+            sx = e.offsetX;
+            sy = e.offsetY;
+            layerCtx.beginPath();
+            layerCtx.moveTo(sx,sy);
+            isClear = true;
+        }
+
+        //绑定一个移动的事件
+        layerCanvas.onmousemove = function(e){
+            if(isClear){
+                ex = e.offsetX;
+                ey = e.offsetY;
+                layerCtx.lineCap = "round";　　 //设置线条两端为圆弧
+                layerCtx.lineJoin = "round";　　 //设置线条转折为圆弧
+                layerCtx.lineWidth = 40;
+                //开始绘制擦除
+                layerCtx.lineTo(ex,ey);
+                // layerCtx.closePath();
+                //设置图形的组合方式 ,实现蒙版的擦除效果
+                layerCtx.globalCompositeOperation = "destination-out";
+                layerCtx.stroke();
+
+                //获取遮罩层的图像数据
+                var imgData = layerCtx.getImageData(x,y,w,h);
+
+                //计算擦除区域的比例
+                var clearArea = 0;
+                for (var i=0;i<imgData.data.length;i+=4){
+                    if(imgData.data[i+3]==0){//比较透明度为0的像素点
+                        clearArea +=1;
+                    }
+                }
+                var p = clearArea / count;
+                if(p>=0.7){
+                    document.querySelector(".layer").classList.add("hide");
+                }
+            }
+        }
+        
+        //鼠标起来事件
+        window.onmouseup = function () {
+            isClear = false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas"); //获取canvas画布
+    var cxt = canvas.getContext("2d");// 获取canvas画笔 (获取canvas上下文环境)
+
+    cxt.moveTo(20,20);
+    cxt.lineTo(400,400);
+    cxt.lineTo(780,20);
+    cxt.lineTo(20,20);
+
+    cxt.lineWidth=10;
+    cxt.stroke();
+
+    cxt.fillStyle = "pink";
+    cxt.fill();
+
+</script>
+</body>
+</html>

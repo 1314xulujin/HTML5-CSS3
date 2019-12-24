@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            margin: 100px auto;
+        }
+
+        .progress{
+            position: relative;
+            width: 800px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 50px auto;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+        .progress-bar{
+            position: absolute;
+            /*width: 50%;*/
+            width: 400px;
+            height: 10px;
+            background: red;
+            border-radius: 5px;
+        }
+        .progress-btn{
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            width: 20px;
+            height: 20px;
+            background: #2aabd2;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="progress" id="progress">
+    <div class="progress-bar" style="width: 800px;">
+        <span class="progress-btn" draggable="false"></span>
+    </div>
+    </div>
+
+    <hr>
+
+    <div class="progress" id="progress-volume">
+        <div class="progress-bar" style="width: 800px;">
+            <span class="progress-btn" draggable="false"></span>
+        </div>
+    </div>
+</div>
+<script src="js/Drag.js"></script>
+</body></html>

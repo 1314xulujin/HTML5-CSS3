@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+</head>
+<body>
+    <div class="container"> 
+        <ul class="songList" id="container_ul"></ul>
+        <div class="poster">
+            <div id="poster"><img src="images/gbqq.jpg" alt="" id="imag"></div>
+            <div id="lrc">
+                <ul id="lrc_list">
+                    <li>15546d564saddasdad</li>
+                    <li>15546d564saddasdad</li>
+                    <li>15546d564saddasdad</li>
+                    <li>15546d564saddasdad</li>
+                </ul>
+            </div>
+        </div>
+        <div class="player">
+            <h4 id="name" class="">周杰伦 - 告白气球</h4>
+            <audio id="audio" hidden></audio>
+        <div class="iconfont">
+            <p id="play" class="iconfont">&#xe63d;</p>
+            <p id="stop" class="iconfont">&#xe810;</p>
+            <p id="pre" class="iconfont">&#xe800;</p>
+            <p id="next" class="iconfont">&#xe7ff;</p>
+            <p id="currentLrc"></p>
+            <div class="progress" id="progress">
+                <div class="progress-bar">
+                    <span class="progress-btn" draggable="false"></span>
+                </div>
+            </div>
+            <div class="time">
+                <span>00:00/00:00</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="js/jquery-v1.12.0.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/lrc.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/Plyer.js"></script>
+</body>
+</html>

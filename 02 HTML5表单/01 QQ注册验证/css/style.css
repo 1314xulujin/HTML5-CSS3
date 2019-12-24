@@ -1,0 +1,147 @@
+*{padding:0;margin:0;}
+body,html{font-family:"Microsoft YaHei",SimHei,"微软雅黑","黑体";}
+body{
+	background:url(../img/body.png) repeat-x;
+}
+h2,h3{
+	font-weight:normal;
+}
+
+.container{
+	width:956px;
+	margin:0 auto;
+}
+.reg-top{
+	background:url(../img/bg_chs.png) repeat-x center top;
+	height:109px;
+}
+.reg-box{
+	height:700px;
+	background:#f9fdff;
+	border:1px #81add9 solid;
+	border-top:0 none;
+}
+.reg-main{
+	width:700px;
+	margin:0 auto;
+	padding:1px;
+}
+.reg-main h3{
+	height:25px;
+	line-height:25px;
+	border-left:3px #59AfE4 solid;
+	padding-left:10px;
+	font-size:18px;
+	margin-top:80px;
+	color:#666;
+}
+.reg-form{
+	border-top:1px #d7d7d7 solid;
+	margin-top:10px;
+}
+.reg-input{
+	height:36px;
+	line-height:36px;
+	margin-top:18px;
+}
+.reg-input label{
+	float:left;
+	width:100px;
+	padding-right:8px;
+	text-align:right;
+	font-size:14px;
+}
+.reg-input .input-box{
+	position: relative;
+	float:left;
+	width:298px;
+	height:36px;
+}
+.reg-input .input-box .tips{
+	position: absolute;
+	left: 104%;
+	top: 0;
+	width: auto;
+	white-space: nowrap;
+	background-color: rgba(0,0,0,.5);
+	color: #fff;
+	padding: 0 10px;
+	border-radius: 5px;
+}
+.reg-input .input-box .tips:before{
+		position: absolute;
+		left: -20px;
+		top: 6px;
+		content: "";
+		width: 0;
+		height: 0;
+		border-width:10px;
+		border-style: solid;
+		border-color: transparent rgba(0,0,0,.5) transparent transparent;
+
+}
+.reg-input input{
+	display: block;
+	width:280px;
+	height:18px;
+	line-height:18px;
+	font-size:14px;
+	padding:8px;
+	border:1px #a8d2e7 solid;
+}
+.reg-input span{
+	float:left;
+	padding-left:10px;
+	font-size:12px;
+	color:#666;
+}
+#submit{
+	width:180px;
+	height:50px;
+	font-size:24px;
+	line-height:50px;
+	text-align:center;
+	color:#fff;
+	margin-top:50px;
+	margin-left:110px;
+	border:0 none;
+	background:#b6010e;
+	font-family: "Microsoft YaHei",SimHei,"微软雅黑","黑体";
+	cursor:pointer;
+}
+.reg-input.foucs-input input{
+	border-color:#089efd;
+}
+.reg-input.error span{
+	color:red;
+}
+.reg-input.error input{
+	border-color:red;
+}
+
+.reg-input.success span{
+	color:green;
+}
+.reg-input.success input{
+	border-color:green;
+}
+
+.reg-input span *{
+	vertical-align:middle;
+	}
+.reg-input span i{
+	display:inline-block;
+	width:15px;
+	height:15px;
+	background-image:url(../img/reg_icons.png);
+	margin-top:-2px;
+	margin-right:4px;
+	}
+.reg-input.success span i{
+	background-position:-80px 0px;
+	}
+
+.reg-input.error span i{
+	background-position:-80px -24px;
+	}	
+	

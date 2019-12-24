@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+
+            /*设置过渡效果:*/
+            /*[必须]1.设置允许元素产生过渡效果的css3属性 : transition-property :(1.指定某一个css样式属性 2. all  3.none)*/
+            transition-property: all;
+            /*transition-property: backgroun
+            d,transform;*/
+
+
+            /*[必须]2.设置元素产生过渡效果花费的时间 transition-duration: ms / s */
+            transition-duration: 1s;
+
+            /*3.设置元素产生过渡的延迟时间 transition-delay : ms / s */
+            transition-delay: 0s;
+
+            /*4.设置过渡效果的速度时间曲线(变化的速度) transition-timing-function */
+            transition-timing-function: ease;
+        }
+
+        .box:nth-child(1):hover{
+            background: #2aabd2;
+            border-radius: 50%;
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+<body>
+    过渡 : 需要通过:事件 / 行为 / js 触发机制 来触发 ,不能主动播放
+    <div class="box"></div>
+</body>
+</html>

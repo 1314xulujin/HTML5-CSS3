@@ -1,0 +1,174 @@
+*{
+    padding:0;
+    margin:0;
+    outline:none;
+}
+ul li{
+    list-style: none;
+}
+.container{
+    position:relative;
+    width:700px;
+    height:520px;
+    border:1px solid #ccc;
+    margin:100px auto;
+    background-color:#f1f1f1;
+    box-shadow:0px 0px 20px #ccc;
+    
+}
+.container .songList{
+    float:left;
+    width:30%;
+    height:80%;
+    border-right:1px solid #ccc;
+    text-align:center;
+}
+.songList li{
+    position: relative;;
+    width:100%;
+    height:11%;
+    line-height:300%;
+    cursor:pointer;
+}
+.songList li:hover{
+    color:red;
+    background-color:orange;
+}
+.container .poster{
+    position: relative;
+    float:left;
+    width:69%;
+    height:80%;
+}
+.poster div{
+    position:absolute;
+}
+.poster div img{
+    display: inline-block;
+    border-radius: 50%;
+    animation: rotate 12s ease-in-out infinite alternate;
+    margin-left:25%;
+    margin-top:20%;
+    cursor:pointer;
+}
+@keyframes rotate{
+    0%{
+        transform: rotateZ(0deg) scale(1);
+    }
+    100%{
+        transform: rotateZ(720deg) scale(1.3);
+    }
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('../fonts/iconfont.eot');
+    src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/iconfont.woff2') format('woff2'),
+        url('../fonts/iconfont.woff') format('woff'),
+        url('../fonts/iconfont.ttf') format('truetype'),
+        url('../fonts/iconfont.svg#iconfont') format('svg');
+  }
+  .player{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:20%;
+    border-top:1px solid #ccc;
+  }
+  .player audio{
+    position:absolute;
+    right:80px;
+    background:#ccc;
+  }
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 26px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor:pointer;
+  }
+  .iconfont p{
+      display: inline-block;
+      margin-left:30px;
+      margin-top:20px;
+  }
+  #name{
+      margin-left:50px;
+      margin-top:10px;
+  }
+  .on{
+      background:rgb(100, 64, 231);
+  }
+
+  #lrc{
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      line-height: 30px;
+      background-color: rgba(0,0,0,.5);
+      color: #fff;
+      padding: 30px 0;
+      overflow: hidden;
+  }
+
+  #lrc .hover{
+      color: orangered;
+      font-weight: bold;
+      transition: all 0.35s;
+      transform: scale(1.2);
+  }
+
+  .iconfont > *{
+      vertical-align: middle;
+  }
+.progress{
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0px 10px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+.progress-bar{
+    position: absolute;
+    /*width: 50%;*/
+    width: 0px;
+    height: 10px;
+    background: red;
+    border-radius: 5px;
+}
+.progress-btn{
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    width: 20px;
+    height: 20px;
+    background: #2aabd2;
+    border-radius: 50%;
+}
+.time{
+    font-size: 12px;
+    display: inline-block;
+}
+
+#currentLrc{
+    position: absolute;
+    font-size: 12px;
+    top: 0;
+}
+
+#lrc_list li{
+    cursor: pointer;
+}
+
+#lrc_list li:hover{
+    color: aquamarine;
+}

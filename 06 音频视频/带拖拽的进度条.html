@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            margin: 100px auto;
+        }
+
+        #progress{
+            position: relative;
+            width: 800px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #progress-bar{
+            position: absolute;
+            /*width: 50%;*/
+            width: 400px;
+            height: 10px;
+            background: red;
+            border-radius: 5px;
+        }
+
+        #progress-btn{
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            width: 20px;
+            height: 20px;
+            background: #2aabd2;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="progress">
+            <div id="progress-bar" style="width: 800px;">
+                <span id="progress-btn"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var progress =  document.querySelector("#progress");
+        var progressBar =  document.querySelector("#progress-bar");
+        var progressBtn =  document.querySelector("#progress-btn");
+        var sx,ex;//鼠标下的开始坐标与结束坐标
+        var sWidth;//鼠标按下时进度条的宽度
+        var maxWidth = progress.offsetWidth;//进度条的最大宽度
+
+        //监听进度条上的点击事件
+        progress.addEventListener("click",function(e){
+
+            //过滤掉span的单击事件
+            if(e.target.id != "progress-btn"){
+                var x = e.offsetX;//获取触发事件时,鼠标相对于触发事件元素的X坐标位置
+                // var p = x / progress.offsetWidth;
+                // progressBar.style.width = p * 100 +'%';
+                progressBar.style.width = x + 'px';
+            }
+            // console.log(x);
+        })
+
+        function moveHandler(e){
+            ex = e.clientX;//获取鼠标结束的X坐标
+            // console.log(ex - sx);
+           // console.log(progressBar.offsetWidth);
+           var distance = ex - sx;//距离
+           var progressBarWidth = sWidth + distance;
+           //判断进度条的最大宽度
+           if(progressBarWidth>= maxWidth){
+               progressBarWidth = maxWidth;
+           }else if(progressBarWidth <=0){
+               // console.log('不能为0')
+               progressBarWidth = 0;
+           }
+           progressBar.style.width = progressBarWidth + 'px';
+            // console.log(distance);
+        }
+
+
+      //小圆点拖拽事件 : 鼠标按下 + 鼠标移动  = > 拖动事件
+        progressBtn.addEventListener("mousedown",function(e){
+            sx = e.clientX;//获取当前鼠标在窗口可视区域的X坐标
+            sWidth = progressBar.offsetWidth;//获取进度条的宽度
+            console.log(sx);
+            //移动事件 = > document / window绑定
+            window.addEventListener("mousemove",moveHandler)
+            //鼠标起来 , 移除鼠标的移动事件
+            window.addEventListener("mouseup",function(){
+                console.log("鼠标起来,结束移动事件操作!");
+                window.removeEventListener("mousemove",moveHandler);
+                console.log("鼠标起来事件!");
+            },{
+                passive:false, //冒泡
+                capture:false, //捕获
+                once:true //绑定一次事件
+            })
+        })
+
+    </script>
+
+</body></html>

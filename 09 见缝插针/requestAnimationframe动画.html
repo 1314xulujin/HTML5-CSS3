@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    /**
+     * 以前jQ 动画的原理是使用的setTimeout (按照时间间隔触发 , 延迟一些卡顿)
+     *
+     *  requestAnimation H5新增(W3C 在后期不打算继续更新 , 如果要考虑使用还的做兼容性)
+     *  好处:
+     *      1.不需要设置时间 , 浏览器会自动设置最佳更新频率 ,并且浏览器已经做了优化
+     *
+     *      2.动画不是按照时间间隔实现, 而是与系统时间同步 ,保障动画实时流畅
+     *
+     *      3.该方法的动画 可以在元素不可见,隐藏时停止渲染
+     *
+     *      4.当前浏览器页面不可见,标签页失去焦点时间动画会挂起, 减少CPU / GPU 资源损耗
+     *
+     *
+     *      阅读资料: https://www.w3cplus.com/javascript/requestAnimationFrame.htmls
+     * */
+    var d = 1200;
+    var s = 0;
+    var box = document.getElementById("box");
+    var timer;
+    function animate(){
+        s+=10;
+        box.style.left =s + 'px';
+        timer = window.requestAnimationFrame(animate);
+        if(s>=d){
+            cancelAnimationFrame(timer);
+        }
+    }
+
+    animate();
+
+</script>
+</body>
+</html>

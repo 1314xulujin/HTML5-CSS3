@@ -1,0 +1,201 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5+CSS3城市场景动画</title>
+<style>
+body {margin:0; padding:0; background-color:#ddf5f7;}
+/*-------- 天空背景以及动画 --------*/
+@keyframes stage {
+    0%{
+      background: #ddf5f7;
+    }
+    30%{
+      background: #640064;
+    }
+    60%{
+      background: #000;
+    }
+    80%{
+      background: pink;
+    }
+    100%{
+      background: #ddf5f7;
+    }
+}
+.stage {
+	position: relative;
+	overflow: hidden;
+	height: 600px;
+	background: #ddf5f7;
+
+    animation: stage 30s infinite alternate;
+}
+ 
+
+
+/*-------- 气球以及动画 --------*/
+@keyframes balloon {
+  0%{
+    left: 100%;
+  }
+  30%{
+    left: 65%;
+    transform: rotate(45deg);
+  }
+  60%{
+    left: 40%;
+    transform: rotate(60deg);
+  }
+  80%{
+    left: 20%;
+    transform: rotate(45deg);
+  }
+  100%{
+    left: -12%;
+    transform: rotate(0deg);
+  }
+}
+
+.balloon {
+	position: absolute;
+	z-index: 3;
+	top: 5%;
+	background: url(images/balloon.png) no-repeat no-repeat center;
+	height: 227px;
+	width: 157px;
+
+   animation: balloon 30s infinite alternate;
+}
+
+/*-------- 城市场景图片 --------*/
+.skyline {
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	bottom: 26%;
+	background: url(images/skyline.png) repeat no-repeat;
+	height: 147px;
+}
+.beans {
+	position: absolute;
+	z-index: 4;
+	height: 201px;
+	width: 88px;
+	bottom: 30%;
+	left: 50%;
+	background: url(images/beans.png) no-repeat no-repeat;
+}
+.ground {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+.ground.front {
+	z-index: 30;
+	background: url(images/groundFront.png) repeat no-repeat center;
+	height: 301px;
+}
+.ground.mid {
+	z-index: 20;
+	background: url(images/groundMid.png) repeat no-repeat;
+	height: 299px;
+}
+.ground.back {
+	z-index: 10;
+	background: url(images/groundBack.png) repeat no-repeat center;
+	height: 281px;
+}
+.dowEventCenter {
+	position: absolute;
+	z-index: 12;
+	bottom: 20%;
+	left: 5%;
+	background: url(images/dowEventCenter.png) no-repeat no-repeat center;
+	height: 236px;
+	width: 524px;
+}
+.planetarium {
+	position: absolute;
+	z-index: 12;
+	bottom: 18%;
+	right: 10%;
+	background: url(images/Planetarium.png) no-repeat no-repeat center;
+	height: 285px;
+	width: 347px;
+}
+.friendshipShell {
+	position: absolute;
+	z-index: 21;
+	bottom: 18%;
+	left: 20%;
+	background: url(images/friendshipShell.png) no-repeat no-repeat center;
+	height: 370px;
+	width: 231px;
+}
+.glockenspiel {
+	position: absolute;
+	z-index: 11;
+	bottom: 26%;
+	right: 50%;
+	background: url(images/Glockenspiel.png) no-repeat no-repeat center;
+	height: 263px;
+	width: 137px;
+}
+	.moon{
+		position:absolute;
+		width:150px;
+		height: 150px;
+		border-radius:50% ;
+		background:gold;
+		left:20%;
+		top:45%;
+		animation:moon 5s;
+	}
+@keyframes moon {
+	0%{
+			top: 100%;
+	}
+	30%{
+		top: 65%;
+		/*transform: skewY(45deg);*/
+		transform: rotate3d(1,0,0,45deg);
+
+	}
+	60%{
+		top: 40%;
+		/*transform: skewY(60deg);*/
+		transform: rotate3d(1,0,0,45deg);
+	}
+
+	80%{
+		top: 20%;
+		transform: skewY(45deg);
+	}
+	100%{
+		top: -12%;
+		transform: skewY(0deg);
+	}
+}
+
+</style>
+</head>
+<body>
+
+<section>
+  <div class="stage">
+    <div class="skyline"></div>
+    <div class="beans"></div>
+    <div class="ground back"></div>
+    <div class="ground mid"></div>
+    <div class="ground front"></div>
+    <div class="dowEventCenter"></div>
+    <div class="planetarium"></div>
+    <div class="friendshipShell"></div>
+    <div class="glockenspiel"></div>
+    <div class="moon"></div>
+    <!--汽球-->
+    <div class="balloon"></div>
+  </div>
+</section>
+</body>
+</html>

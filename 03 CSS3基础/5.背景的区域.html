@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border:5px dashed green;
+            margin: 10px auto;
+            background: url("bg_flower.gif") no-repeat ;
+            padding: 20px;
+        }
+
+        .box:nth-child(1){
+            /*设置背景从边框开始*/
+            background-origin: border-box;
+        }
+
+        .box:nth-child(2){
+            /*设置背景从内边距开始(默认)*/
+            background-origin: padding-box;
+        }
+
+        .box:nth-child(3){
+            /*设置背景从内容开始*/
+            background-origin: content-box;
+          }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+</body>
+</html>

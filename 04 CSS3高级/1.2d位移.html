@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 50px auto;
+        }
+
+        .box:nth-child(1){
+            transform: translateX(-100px);
+        }
+        .box:nth-child(2){
+            transform: translateY(-100px);
+        }
+        .box:nth-child(3){
+            /* 如果只有一个参数 ,则以X轴方向位移*/
+            transform: translate(100px,100px);
+        }
+    </style>
+</head>
+<body>
+<div class="box">translateX</div>
+<div class="box"></div>
+<div class="box"></div>
+</body>
+</html>

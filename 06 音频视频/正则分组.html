@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var url = 'url("http://g4.ykimg.com/052502035D791559ADD99B1AC206A55D")';
+    var reg = /url\(\"([a-zA-Z0-9\/\.\:]*)\"\)/;
+    console.log(url.replace(reg,'$1'));
+    /**
+     *
+     *
+     $(".single-preview").eq(0).find(".youku-imgBg").each((index,item)=>{
+        console.log(item.style.backgroundImage.replace(/url\(\"([a-zA-Z0-9\/\.\:]*)\"\)/gi,"$1"))
+    })
+     *
+     */
+
+</script>
+</body>
+</html>

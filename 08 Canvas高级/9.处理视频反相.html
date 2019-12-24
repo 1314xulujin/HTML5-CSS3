@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            float: left;
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            margin: 0;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <video id="video" src="video.mp4" width="800" controls></video>
+    <button id="screenshoot">截图</button>
+</div>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas");
+    var cxt =  canvas.getContext("2d");
+
+    var screenshoot = document.getElementById("screenshoot");
+    var video = document.getElementById("video");
+    //先将视频绘制canvas - > 然后取出canvas的图像数据 - >(反相)处理  ->放回去
+    setInterval(function(){
+        cxt.drawImage(video,0,0,800,600); //1.绘制视频
+        var imgageData = cxt.getImageData(0,0,800,600);//2.取出canvas图像数据
+        // 3. 处理反相
+        for (var i=0;i<imgageData.data.length;i+=4){
+            //处理每一个像素点的RGBA 数据 (反相算法)
+            // imgageData.data[i] = 255 - imgageData.data[i] ;  //R
+            // imgageData.data[i+1] = 255 - imgageData.data[i+1] ; //g
+            // imgageData.data[i+2] = 255 - imgageData.data[i+2]; // b
+            // imgageData.data[i+3] = 255; //a
+
+            // (灰度) 颜色的RGB 值一样即为灰色
+            var p = (imgageData.data[i] + imgageData.data[i+1] + imgageData.data[i+2]) / 3 * 1.5;
+            imgageData.data[i] = p;  //R
+            imgageData.data[i+1] =p; //g
+            imgageData.data[i+2] =p; // b
+            imgageData.data[i+3] = 255; //a
+        }
+        //4.重新绘制回去
+        cxt.putImageData(imgageData,0,0);
+
+    },1000/60)
+</script>
+</body>
+</html>

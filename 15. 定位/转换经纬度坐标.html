@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>查询</button>
+    <p class="msg"></p>
+<script src="js/jquery-v1.12.0.js"></script>
+<script>
+    //假设定位的数据:
+    var longitude= 114.086684;
+    var latitude = 22.543798;
+
+    //使用ajax调用接口解析地址
+    $('button').click(function () {
+        $.ajax({
+            url:"http://api.map.baidu.com/cloudrgc/v1?ak=ZGlUdLOxEzvKhrAr0gDhiDLzUayDR1NU&coord_type=wgs84ll&location="+latitude+","+longitude+"&geotable_id=204425&sn=c2ad77cd6da47d22b0508f914aaa3a44",
+            dataType:"jsonp",
+            success:function (res) {
+                console.log(res);
+                $(".msg").html(res.formatted_address);
+            }
+        })
+    })
+</script>
+</body>
+</html>

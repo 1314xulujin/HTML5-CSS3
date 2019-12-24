@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas");
+    var cxt =  canvas.getContext("2d");
+
+    //(先 , 新 )
+    //1.绘制一个蓝色的矩形 (先)
+    cxt.fillStyle = "blue";
+    cxt.fillRect(250,250,300,300);
+
+    /**
+     * 设置图形组合方式: (ps中的图层混合模式)
+     *      (分上下)
+     *      1. source-over (默认) 新画图形, 在原有图形之上 - > 后来居上
+     *      2.destination-over 新画图形, 在原有图形之下 -> 先画在上面
+     *      (取重叠)
+     *      3.source-in 只显示新画图形中与原图型交集部分
+     *      4.destination-in 只显示先画图形中与原新图形交集部分
+     *
+     *      (取不重叠)
+     *      5.source-out 只显示 新画图形中与原图形不交集部分
+     *      6.destination-out 只显示 先画图形中与新图形不交集部分 - > 实现一个擦除的效果
+     *
+     *      7.source-atop :绘制原图形形状, 如有与新图形重叠,则新图形显示在上面
+     *      8.destination-atop:绘制新图形形状, 如有与原图形重叠,则原图形显示在上面
+     *
+     *      9.lighter : 图形均绘制,但是重叠部分做加色处理
+     *
+     *      10. xor :新旧图形,重叠部分透明处理
+     *
+     *      11.copy: 只绘制新图形, 原图形中未与新图形重叠部分透明处理
+     *
+     *      12.lighten : 变亮
+     *
+     *      13.darken : 变暗
+     *
+     * */
+
+    cxt.globalCompositeOperation = "hue";
+
+
+
+    // 2.绘制一个红色的圆形 (新)
+    cxt.arc(550,550,200,0,Math.PI*2);
+    cxt.fillStyle = "rgba(255,0,0,1)";
+    cxt.fill();
+
+</script>
+</body>
+</html>

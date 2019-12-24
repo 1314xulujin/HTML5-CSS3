@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="bofang" unicode="&#58941;" d="M844.704269 420.269527L222.284513 779.619615a43.342807 43.342807 0 0 1-65.025048-37.548353v-718.692951a43.335582 43.335582 0 0 1 65.025048-37.541128l622.412531 359.342864a43.357257 43.357257 0 0 1 0.007225 75.08948z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="pause" unicode="&#59408;" d="M243.2 688h166.4v-608H243.2zM614.4 688h166.4v-608h-166.4z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="xiayiqu" unicode="&#59391;" d="M216.7 51.700000000000045V716.3l445-332.3-445-332.3z m590.6 0h-80V716.3h80v-664.6z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="shangyiqu" unicode="&#59392;" d="M362.3 384l445 332.3v-664.5L362.3 384zM216.7 716.3h80v-664.5h-80V716.3z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

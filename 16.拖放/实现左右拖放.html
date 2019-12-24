@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖放功能</title>
+    <style>
+        .box{
+            width: 400px;
+            height: 260px;
+            border: 1px solid red;
+            display: inline-block;
+        }
+        #pic{
+            width: 100px;
+            height: 100px;
+            background: #1b6d85;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box1" ondragover="dragover(event)" ondrop="drop(event)">
+    <div id="pic" draggable="true" ondragstart="dragstart(event)"></div>
+</div>
+<div class="box" id="box2" ondragover="dragover(event)" ondrop="drop(event)"></div>
+<script>
+    //1.设置  draggable="true"
+
+    //开始拖拽
+    function dragstart(e) {
+        console.log(e);
+        //把当前的拖拽元素记录到e.dataTransfer.setData() , 取出 e.dataTransfer.getData()
+        e.dataTransfer.setData("target",e.target.id);
+    }
+
+    //dragover() 阻止浏览器默认型
+    function dragover(e) {
+        e.preventDefault();
+    }
+
+    //drop 事件
+    function drop(e) {
+            console.log(e.target);
+            console.log("已经松手放置:",e.dataTransfer.getData("target"));
+            e.target.appendChild(document.getElementById(e.dataTransfer.getData("target")));
+    }
+</script>
+</body>
+</html>

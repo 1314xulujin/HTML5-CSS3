@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>这是一个问候语!!!!!</h1>
+<div id="box"></div>
+<script>
+    //页面 (前台) 调用 H5 提供提供的worker = > 相当于创建一个线程
+    var worker = new Worker("task.js"); //在后台的线程中执行task.js 的代码
+    console.log(worker);
+    /**
+     * worker 中提供的
+     * -事件
+     *      onerror : 后台线程执行错误触发的事件
+     *      onmessage : 后台线程执行完可以调用一个方法给前台的js发送消息用来传值
+     *
+     * -方法
+     *      postMessage()  后台线程向前台发送消息
+     *      terminate()  取消任务 , 如需终止 web worker，并释放浏览器/计算机资源，请使用 terminate() 方法
+     *
+     * */
+    
+    worker.onerror = function (e) {
+        console.log("后台线程执行task任务失败!",e);
+    }
+
+    worker.onmessage = function (e) {
+        console.log("后台线程发消息过来了!",e);
+        document.getElementById("box").innerHTML="计算结果为:"+e.data;
+    }
+
+    worker.postMessage("这是一个结果");//向task.js执行线程发送数据
+</script>
+</body>
+</html>

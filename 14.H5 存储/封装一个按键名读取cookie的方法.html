@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    * 需求: 一般为了操作cookie方便 ,在使用的时候都是按照 key 名 来读取到指定的cooke的值
+    * */
+
+    function getCookie(key){
+        var cookies = document.cookie;//获取cookie
+        var arr = cookies.split(";");
+        var obj = {};
+        arr.forEach(function (item) {
+            var tmp = item.split("=");
+            var k = tmp[0]; //获取键名
+                k = k.trim();
+            obj[k] = tmp[1];
+            // console.log(tmp);
+        })
+        return obj[key];
+
+    }
+
+    console.log(getCookie("age"));
+</script>
+</body>
+</html>

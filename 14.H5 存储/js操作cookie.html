@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+     //  cookie 在document对象上
+    // console.log(document.cookie);
+
+     var date = new Date("2087-10-26 10:21:30");
+    //写入cookie 到浏览器本地
+
+     /*
+     *   写入cookie 的时候 可以添加:
+     *      name=value  内容
+     *      Expires=日期对象
+     *      domain=域名(baidu.com)
+     *      path=/ (/ 表示该站点下所有页面都可以访问 ,/a 只能a目录下的页面可以访问)
+     * */
+
+    // document.cookie = 'name=张三;Expires='+date+'";domain=localhost;path=/';
+    document.cookie = 'sex=男;Expires='+date+'";domain=localhost;path=/';
+
+</script>
+</body>
+</html>

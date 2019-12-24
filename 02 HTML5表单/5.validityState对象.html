@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="#">
+    <input type="url" id="txt">
+    <button>提交</button>
+</form>
+
+<script>
+    //querySelector(选择器) 返回第一个选择器中匹配的元素对象
+    //querySelectorAll(选择器) 所有选择器中匹配的元素集合
+
+    //ValidityState 对象 => 包含当前表单元素的验证状态 (告知我们它哪里不对,不符合要求)
+    var txt = document.querySelector("#txt");
+        console.dir(txt.validity);
+    /***
+     * 只要通过表单验证后 ,对应的表单会有ValidityState状态 :
+     * ValidityState :
+     *    valueMissing :true  =>  值为空  ，false 值不为空
+     *    typeMismatch : true =>  输入的内容类型, 与表单设定的类型不匹配
+     *    patternMismatch : true = > 输入的内容类型 ,与设定的正则不匹配
+     *
+     *    tooLong  输入的长度过长
+     *    tooShort  输入的长度过短
+     *
+     *    stepMismatch  输入的值与设定的step 不符合
+     *    rangeOverflow  输入的值大于设定的最大值
+     *    rangeUnderflow  输入的值小于设定的最小值
+     *
+     *    customError 使用自定义验证错误提示
+     *
+     *    valid:true 表单验证通过  ,  false 不通过
+     */
+    
+</script>
+</body>
+</html>

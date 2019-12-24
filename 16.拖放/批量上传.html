@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            position: relative;
+            width: 400px;
+            margin: 50px auto;
+        }
+        #upload{
+            position: relative;
+            width: 400px;
+            height: 200px;
+            border: 2px solid #ccc;
+            text-align: center;
+            line-height: 320px;
+            font-size: 28px;
+            color: #999;
+            background: #f9f9f9;
+        }
+        #upload.enter{
+            background: #ddd;
+            border:2px darkcyan dashed;
+        }
+        #upload .select-file{
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        }
+        #upload .select-file a{
+            font-size: 100px;
+            text-decoration: none;
+            color: #999;
+            display: block;
+            line-height: 0.5;
+            width: 80px;
+            height: 80px;
+        }
+        #upload .select-file input{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            opacity: 0;
+            cursor: pointer;
+        }
+        #upload img{
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        #upload-btn{
+            border: 0;
+            display: block;
+            margin: 10px auto;
+            width: 100px;
+            height: 40px;
+            background: #2aabd2;
+            color: #fff;
+            cursor: pointer;
+        }
+        .progress{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+            display: none;
+        }
+        .progress-bar{
+            position: absolute;
+            width: 300px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 15px;
+            left: 50%;
+            top: 50%;
+            overflow: hidden;
+            transform: translate(-50%,-50%);
+        }
+        .progress-total{
+            position: absolute;
+            height: 10px;
+            left: 0;
+            width: 0%;
+            background: red;
+        }
+        .progress-count{
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            font-weight: bold;
+        }
+        #list{
+            width: 1200px;
+            padding: 20px;
+            margin: 10px auto;
+            border: 1px dashed #ccc;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #list .item{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #2aabd2;
+            margin: 10px;
+        }
+
+        #list .item .inner{
+           width: 100px;
+           height: 100px;
+        }
+
+        #list .item img{
+            display: block;
+            max-width:100%;
+            max-height: 100%;
+        }
+        #list .item span{
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            background: red;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<img src="logo.png" width="0" height="0"id="logo">
+<!--<canvas id="canvas"></canvas>-->
+<div class="container">
+    <div id="upload">
+        拖拽文件至此上传...
+        <div class="select-file">
+            <a href="javascript:void(0)">+</a>
+            <input type="file" id="file" multiple title="点击添加上传文件">
+        </div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar">
+            <div class="progress-total"></div>
+        </div>
+        <div class="progress-count">0%</div>
+    </div>
+</div>
+<div id="list"></div>
+<button id="upload-btn">立即上传</button>
+<script src="js/jquery-v1.12.0.js"></script>
+<script>
+    var upload = document.getElementById("upload");
+    //H5新增的一个FormData对象 ,用于模拟表单方式提交
+    var formdata = new FormData();
+
+    //监听拖拽目标是否已经进入上传区域
+    upload.addEventListener("dragenter",function () {
+        upload.className="enter";
+        upload.innerHTML="松手即可上传...";
+        console.log("元素已经进入目标区域...");
+    })
+
+    upload.addEventListener("dragleave",function () {
+        upload.className="";
+        upload.innerHTML="拖拽文件至此上传...";
+    })
+
+    upload.addEventListener("drop",function (e) {
+        // console.log("当前已经把拖拽的图片放入到上传区域...",e.dataTransfer.files);
+        var file = e.dataTransfer.files[0];//获取拖拽文件的第一个文件对象 , 原始的文件对象是不能直接在http中传输
+        //显示预览图 => 调用API 读取图片内容
+
+        //判断是否需要压缩 (文件大小超过 200kb 需要压缩)
+        if(file.size>200 * 1024){
+            // alert('此图片需要压缩后上传!');
+            var fr = new FileReader();
+            fr.readAsDataURL(file);//读取为base64文件编码
+            fr.onload = function () {//文件读取
+                // console.log(fr.result);
+                var img = new Image();
+                img.src = fr.result;
+                img.onload = function () {
+                    console.log("可以开始画图...",img.width);
+                    //创建canvas对象
+                    var canvas = document.createElement("canvas");
+                    // var canvas = document.getElementById("canvas");
+                    canvas.width = img.width / 2;
+                    canvas.height = img.height /2;
+                    var cxt = canvas.getContext("2d");
+                    //将图片绘制到canvas
+                    cxt.drawImage(img,0,0,img.width / 2,img.height /2);
+                    //绘制水印
+                    var logo = document.getElementById("logo");
+                    cxt.drawImage(logo,20,20);
+                    //将canvas数据导出base64 / blob二进制
+                    //需要知道到底压缩多少合适 ? 200*1024 = (x - (x/8)*2) , x =  200 / 0.75 * 1024 + (还再加上=数量+22)
+                    //预估值 275600  base64编码字符长度 , 与文件大小200kb 接近
+                    var scale = 0.92;//初始的压缩比例
+                    var url2 = canvas.toDataURL("image/jpeg",scale);
+                    while (url2.length> 275600){ //如果压缩的文件一直不小于200, 就需要继续压缩
+                        scale-=0.01;
+                        url2 = canvas.toDataURL("image/jpeg",scale);
+                    }
+                    //为了上传文件, 会图片导出二进制数据,在JS中提供Blob对象 用于操作二进制对象数据(可以实现断点续传 , 二进制可以切片上传)
+                    canvas.toBlob(function (blob) {
+                        console.log(blob);
+                        formdata.append("imgs",blob);//将二进制的图片对象数据 ,追加到表单数据对象 ,可以直接上传了
+                        console.log("压缩比例为:",scale,"最合适");
+                        upload.innerHTML = '<img src="'+url2+'"/>';
+                        // console.log(url2.length);
+                    },"image/jpeg",scale);
+                }
+            }
+        }else {
+
+        }
+
+        // formdata.append("imgs",file);//往表单数据对象中,添加需要上传的文件数据 append(后台需要的字段名,实际的数据(字符串,文件对象))
+        // formdata.append("ak","fF8BDD1B2e23ECE2146636e21d0271C7");
+    });
+
+    //监听拖放的dragover事件,阻止默认行为
+    document.addEventListener("dragover",function (e) {
+        e.preventDefault();
+    })
+
+    document.addEventListener("drop",function (e) {
+        e.preventDefault();
+    })
+
+    $("#upload-btn").click(function () {
+        formdata.append("ak","fF8BDD1B2e23ECE2146636e21d0271C7");
+
+        //将文件暂存区的文件对象添加到表单数据
+        fileList.forEach(function(item,index){
+            formdata.append("imgs"+index,item);
+        })
+
+        $.ajax({
+            method:"post",
+            url:"https://lby.link/api/student/uploadImage2",
+            contentType:false,//1.设置发送服务器的数据内容类型 ,默认:application/x-www-form-urlencoded ,但是此时是传输一个文件对象 ,所以不能使用这个 ,false代码根据上传文件类型决定
+            processData:false,//因为默认的情况下 ,ajax会把发送的数据转成查询字符串格式,但是此时上传的是一个文件对象 ,所以不需要转换 ,设置false
+            data: formdata,
+            dataType:"json",
+            xhr:function () {
+                var xhr = new XMLHttpRequest();
+                console.log(xhr);
+                //显示进度条
+                $(".progress").fadeIn(300);
+                xhr.upload.onprogress = function (e) {
+                    console.log(e);
+                    var p = ((e.loaded / e.total)*100).toFixed(2) + '%'; //计算已上传的百分比
+                    //设置进度比例
+                    $('.progress-total').css("width",p);
+                    $(".progress-count").html(p);
+
+                }
+                xhr.upload.onload = function () {
+                    alert("上传成功!");
+                }
+                return xhr;
+            },
+            success:function (res) {
+                console.log(res);
+            }
+        })
+    })
+
+    /**
+     * 明明需要压缩 至204800 ，为什么要写275600？
+     *  从字节码，输出数据格式一般为8Bit字节编码  ， 10M bit  = > 102400 / 8 byte / 1024 =>M    1byte = 8 bit ,文件计算单位 byte
+     *  转base64编码
+     *
+     *  https://blog.csdn.net/chenyejunjun/article/details/54924355
+     *  base64编码原理：http://gj.3gwen.com/tpbase64.html?kbl=
+     *
+     *      计算base64编码文件大小公式： 【最终base64文件的大小 =parseInt(base64字符串长度-(base64字符串长度/8)*2)】;
+     *
+     *      Blob 对象
+     *      FormData 表单数据对象
+     *
+     * */
+
+    var file = document.getElementById("file");
+    var fileList = [];//存储待上传的文件
+
+    file.onchange = function () {
+        var files = file.files;//获取选择的文件列表
+        for(var i=0;i<files.length;i++){
+            //判断是否需要压缩 (文件大小超过 200kb 需要压缩)
+            if(files[i].size>200 * 1024){
+                (function(){
+                    // alert('此图片需要压缩后上传!');
+                    var fr = new FileReader();
+                    fr.readAsDataURL(files[i]);//读取为base64文件编码
+                    fr.onload = function () {//文件读取
+                        // console.log(fr.result);
+                        var img = new Image();
+                        img.src = fr.result;
+                        img.onload = function () {
+                            console.log("可以开始画图...",img.width);
+                            //创建canvas对象
+                            var canvas = document.createElement("canvas");
+                            // var canvas = document.getElementById("canvas");
+                            canvas.width = img.width / 2;
+                            canvas.height = img.height /2;
+                            var cxt = canvas.getContext("2d");
+                            //将图片绘制到canvas
+                            cxt.drawImage(img,0,0,img.width / 2,img.height /2);
+                            //绘制水印
+                            var logo = document.getElementById("logo");
+                            cxt.drawImage(logo,20,20);
+                            //将canvas数据导出base64 / blob二进制
+                            //需要知道到底压缩多少合适 ? 200*1024 = (x - (x/8)*2) , x =  200 / 0.75 * 1024 + (还再加上=数量+22)
+                            //预估值 275600  base64编码字符长度 , 与文件大小200kb 接近
+                            var scale = 0.92;//初始的压缩比例
+                            var url2 = canvas.toDataURL("image/jpeg",scale);
+                            while (url2.length> 275600){ //如果压缩的文件一直不小于200, 就需要继续压缩
+                                scale-=0.01;
+                                url2 = canvas.toDataURL("image/jpeg",scale);
+                            }
+                            //为了上传文件, 会图片导出二进制数据,在JS中提供Blob对象 用于操作二进制对象数据(可以实现断点续传 , 二进制可以切片上传)
+                            canvas.toBlob(function (blob) {
+                                fileList.push(blob);
+                                var url3 = URL.createObjectURL(blob);
+                                // formdata.append("imgs"+i,blob);//将二进制的图片对象数据 ,追加到表单数据对象 ,可以直接上传了
+                                var htmlStr = '<div class="item">\n' +
+                                    '       <div class="inner">\n' +
+                                    '           <img src="'+url3+'" alt="">\n' +
+                                    '           <span>&times;</span>\n' +
+                                    '       </div>\n' +
+                                    '    </div>'
+                                $("#list").append($(htmlStr));
+                            },"image/jpeg",scale);
+                        }
+                    }
+                })(i)
+            }else {
+                    fileList.push(files[i]);
+                    var url = URL.createObjectURL(files[i]); //可以对文件对象, Blob对象 , MediasSource 对象创建一个相对的内存中引用地址(临时引用地址)
+                        var htmlStr = '<div class="item">\n' +
+                            '       <div class="inner">\n' +
+                            '           <img src="'+url+'" alt="">\n' +
+                            '           <span>&times;</span>\n' +
+                            '       </div>\n' +
+                            '    </div>'
+                        $("#list").append($(htmlStr));
+                }
+        }
+    }
+
+</script>
+</body>
+</html>

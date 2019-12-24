@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas");
+    var cxt =  canvas.getContext("2d");
+    var g = null;
+    var img = new Image();
+    img.src = "img/icon.jpg";
+    // cxt.rotate(Math.PI / 180 *45);
+    img.onload = function(){
+        //1.创建平铺对象
+        g = cxt.createPattern(img,"repeat-y");
+        //2.设置填充模式为 平铺对象
+        cxt.fillStyle = g;
+        cxt.fillRect(0,0,800,800);
+    }
+
+
+
+</script>
+</body>
+</html>

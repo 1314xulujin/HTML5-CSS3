@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input::placeholder{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form action="#" method="post" autocomplete="on">
+    <p>手机号码: <input type="text" pattern="^1[3-9]\d{9}$"></p>
+    <p>姓名: <input type="url" name="username" required placeholder="请输入姓名..."></p>
+    <p>密码: <input type="email" name="userpwd" ></p>
+    <button>提交</button>
+</form>
+<hr>
+<form action="#" method="post" autocomplete="on" novalidate>
+    <p>姓名: <input type="url" name="username" autofocus></p>
+    <p>密码: <input type="email" name="userpwd" ></p>
+    <button>提交</button>
+</form>
+</body>
+</html>

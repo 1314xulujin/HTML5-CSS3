@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<p>视频尺寸: 4:3  /  16:9  </p>
+<video id="video" src="media/vedio.mp4" width="800" height="600" controls autoplay></video>
+<button id="fullscreen">全屏</button>
+<script>
+    var video = document.querySelector("#video");
+    var fullbtn = document.querySelector("#fullscreen");
+
+    fullbtn.onclick = function(){
+        // document.documentElement.requestFullscreen(); // 窗口全屏
+
+        // video.requestFullscreen(); //标准做法
+
+        video.msRequestFullScreen = function () {
+            /** 伪全屏 :让视屏占满窗口*/
+            console.log("不支持全屏!");
+            video.height = window.innerHeight;
+            video.width = video.height / (3/4);
+            video.style.cssText="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%)";
+            document.documentElement.style.background="#000";
+            video.controls = false;
+
+            var WsShell=new ActiveXObject('WScript.Shell');
+            WsShell.SendKeys('{F11}'); //模拟按键F11
+        }
+
+
+        if(video.requestFullscreen){
+            video.requestFullscreen();
+        }else if(video.mozRequestFullScreen){ //火狐浏览器
+            video.mozRequestFullScreen();
+        }else if(video.webkitRequestFullScreen){ //webkit 内核浏览器
+            video.webkitRequestFullScreen()
+        }else if(video.msRequestFullScreen){
+            // console.log(11111)
+            video.msRequestFullScreen();
+        }else{
+            // /** 伪全屏 :让视屏占满窗口*/
+            // console.log("不支持全屏!");
+            // video.height = window.innerHeight;
+            // video.width = video.height / (3/4);
+            // video.style.cssText="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%)";
+            // document.documentElement.style.background="#000";
+            // video.controls = false;
+            //
+            // var WsShell=new ActiveXObject('WScript.Shell');
+            // WsShell.SendKeys('{F11}'); //模拟按键F11
+
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas"); //获取canvas画布
+    var cxt = canvas.getContext("2d");// 获取canvas画笔 (获取canvas上下文环境)
+
+    //绘制矩形路径  rect(x,y,w,h)
+    // cxt.rect(300,300,200,200);
+    // cxt.stroke();
+
+    //直接绘制一个带描边的路径
+    // cxt.strokeRect(300,300,200,200);
+
+    //直接绘制一个带填充的矩形
+    cxt.fillRect(300,300,200,200);
+
+    //清除矩形区域
+    cxt.clearRect(350,350,100,100);
+
+
+</script>
+</body>
+</html>

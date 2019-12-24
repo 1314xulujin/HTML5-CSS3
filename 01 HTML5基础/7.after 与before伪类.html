@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        p::before{
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: red;
+            font-size: 12px;
+            /*content: "￥";*/
+
+            /*//元素属性指定内容*/
+            /*content:attr(abc);*/
+            content: ""; /* 即使没有内容 ,也需要加 content 属性*/
+        }
+
+        p::after{
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: green;
+        }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p abc="哈哈">50.00</p>
+</body>
+</html>

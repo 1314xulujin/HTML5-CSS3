@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<!--<img id="img" src="img/html5.jpg" alt="">-->
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas");
+    var cxt =  canvas.getContext("2d");
+
+    //绘制图像 (图像从哪来??)
+    // var img = document.getElementById("img");//获取图像对象
+
+    var img = new Image();//创建图像对象
+        img.src="img/html5.jpg";
+    img.onload = function(){ //确保图像已经存在, 才开始绘制
+        //1.使用canvas 绘制图像 drawImage(img,x,y)
+        cxt.drawImage(img,0,0);
+
+        //2.drawImage(img,x,y,w,h) //
+        cxt.drawImage(img,500,0,300,375);
+
+        // 3.drawImage(img,sx,sy,sw,sh,dx,dy,dw,dh);
+        cxt.drawImage(img,134,28,233,324,0,380,233,324);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Websocket 构造函数 ,提供ws协议的使用 , 实现双向通信(全双工通信)
+
+        WebSocket协议的目标是在一个独立的持久连接上提供全双工双向通信。客户端和服务器可以向对方主动发送和接受数据。在JS中创建WebSocket后，会有一个HTTP请求发向浏览器以发起请求。在取得服务器响应后，建立的连接会使用HTTP升级将HTTP协议转换为WebSocket协议。也就是说，使用标准的HTTP协议无法实现WebSocket，只有支持那些协议的专门浏览器才能正常工作。
+
+        WebSocket是应用层协议，是TCP/IP协议的子集，通过HTTP/1.1协议的101状态码进行握手。也就是说，WebSocket协议的建立需要先借助HTTP协议，
+        在服务器返回101状态码之后，就可以进行websocket全双工双向通信了，就没有HTTP协议什么事情了。
+        需要提前准备一个ws协议 的后台
+
+        Websocket 对象
+       属性:
+            readyState :  当前连接状态  = > CLOSED: 3    CLOSING: 2    CONNECTING: 0  OPEN: 1
+            url : 连接地址
+            protocol :协议
+
+        事件:
+            onclose: 关闭连接事件
+            onerror: 连接错误事件
+            onmessage: 消息事件 (后端主动发送消息过来触发的事件)
+            onopen: 连接成功
+
+        方法:
+            close() 关闭连接
+            send()  发送消息
+
+     */
+        var ws = new WebSocket("ws://172.16.4.1:8000");
+
+        //连接事件 - 成功
+       ws.onopen = function(){
+           console.log("已经建立连接...");
+       };
+
+       //连接失败事件
+      ws.onerror = function(){
+        console.log("连接建立失败...");
+       };
+      //消息事件
+    ws.onmessage = function (e) {
+        console.log("后端发消息来了...",e.data);
+    }
+
+    //关闭连接事件
+    ws.onclose = function () {
+        console.log("关闭连接事件!");
+    }
+</script>
+</body>
+</html>

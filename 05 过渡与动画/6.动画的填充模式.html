@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation-fill-mode 填充模式</title>
+    <style>
+        @keyframes animate {
+            0%{
+                left: 0;
+            }
+
+            100%{
+                left: 1100px;
+            }
+        }
+        .container{
+            width: 1200px;
+            margin: 50px auto;
+            border: 1px solid red;
+        }
+
+        .container .box{
+            position: relative;
+            left: -100px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #2aabd2;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            margin: 10px 0;
+
+            animation: animate 1s;
+        }
+
+        .container.on .box{
+            left: 1100px;
+        }
+
+        .container .box:nth-child(1){
+            /*设置填充模式*/
+            animation-fill-mode: none;
+        }
+
+        .container .box:nth-child(2){
+            /* 动画结束后元素停留在动画的最后一帧位置*/
+            animation-fill-mode: forwards;
+        }
+
+        .container .box:nth-child(3){
+            /* 动画开始时在第一帧位置开始出现(不一定是元素布局的位置) (配合延迟使用 ,效果可见)*/
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+        }
+
+        .container .box:nth-child(4){
+            /**动画从第一帧开始出现 ,然后结束时停留在最后一帧*/
+            animation-delay: 1s;
+            animation-fill-mode: both;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">none</div>
+    <div class="box">forwards</div>
+    <div class="box">backwards</div>
+    <div class="box">both</div>
+</div>
+</body>
+</html>

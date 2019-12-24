@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas");
+    var cxt =  canvas.getContext("2d");
+
+    //1.创建渐变对象(线性渐变) ,createLinearGradient(x1,y1,x2,y2)
+    var g = cxt.createLinearGradient(0,0,800,0);
+
+    // 2.设置渐变颜色: 把整个渐变过程视为单位1 , 开始位置0 ,终点为1
+    g.addColorStop(0,"#ff0000");
+    g.addColorStop(0.25,"purple");
+    g.addColorStop(0.5,'yellow');
+    g.addColorStop(0.75,'pink');
+    g.addColorStop(1,"#00ff00");
+
+    cxt.strokeStyle = g;
+    cxt.lineWidth = 20;
+    cxt.strokeRect(50,50,700,700);
+</script>
+</body>
+</html>

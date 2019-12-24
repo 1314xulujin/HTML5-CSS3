@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 50px auto;
+
+            /*盒子阴影:
+                1.阴影的水平偏移距离 （必须）
+                2.阴影的垂直偏移距离 （必须）
+
+                3.阴影模糊程度
+                4.阴影在大小
+                5.阴影的颜色
+                6.阴影在方向：内阴影(inset) / 外阴影（ 默认不需要写）
+            */
+            /*box-shadow: -20px 20px 10px 10px #666;*/
+
+            box-shadow: -5px 0px 10px royalblue,-10px 0px 10px deeppink,-15px 0px 10px green,-20px 0px 10px purple;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

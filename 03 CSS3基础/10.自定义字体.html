@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*引入外部字体文件 ,可以实现字体自定义*/
+        /*1.设置自定义字体*/
+        @font-face {
+            font-family: abc;
+            src: url("fonts/shimesone_personal-webfont.svg"),
+            url("fonts/shimesone_personal-webfont.eot"),
+            url("fonts/shimesone_personal-webfont.ttf"),
+            url("fonts/shimesone_personal-webfont.woff");
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        /*2.使用自定义字体*/
+        p{
+            font-family: abc;
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+    <p>This is a long time!</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //定义一个设置cookie的方法
+    function setCookie(key,value,day,domain,path) { // 键值对  key cookie的字段名  ,value 值 ,day 周期 domain域名 ,path 路径
+        var day = day || 1;
+        var expires = new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000);
+        var domain = domain || "localhost";
+        var path = path || "/";
+        //写入cookie
+        document.cookie = key+ "=" + value +";expires="+expires+";domain="+domain+';path='+path;
+    }
+
+    var str = "张三1";
+
+    for(var o=0;o<5000;o++){
+        str+="张三"+o;
+    }
+
+    //测试一下浏览器能存储多少cookie
+    for(var i=1;i<=200;i++){
+        setCookie("name"+i,str,30);
+    }
+</script>
+</body>
+</html>

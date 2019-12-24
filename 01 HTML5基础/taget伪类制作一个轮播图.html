@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul,li{
+            list-style:none;
+        }
+        .container{
+            width:730px;
+            height:454px;
+            margin:50px auto;
+        }
+        .slide{
+            position:relative;
+            width:730px;
+            height:454px;
+            overflow:hidden;
+        }
+        .slide-img li{
+            display:none;
+        }
+        .slide-img li.active{
+            display:block;
+        }
+        .slide-img a{
+            display:block;
+        }
+        .slide-page{
+            position:absolute;
+            width:100%;
+            text-align:center;
+            bottom:20px;
+        }
+        .slide-page li{
+            display:inline-block;
+            width:26px;
+            height:26px;
+            line-height:26px;
+            background:#f1f1f1;
+            color:#666;
+            cursor:pointer;
+            border-radius:50%;
+        }
+        .slide-page li.active{
+            background-color:#ff3c3c;
+            color:#fff;
+        }
+
+        .controls{
+            position:absolute;
+            top:50%;
+            margin-top:-25px;
+            width:50px;
+            height:50px;
+            text-align:center;
+            font-size:30px;
+            line-height:40px;
+            font-family:"幼圆";
+            text-decoration:none;
+            background:rgba(0,0,0,.5);
+            color:#fff;
+            /*display:none;*/
+            opacity:0;
+            transition:all 0.35s;
+        }
+        .slide:hover .controls{
+            /*display:block;*/
+            opacity:1;
+        }
+        .controls.prev{
+            border-radius:0 50% 50% 0;
+            text-indent:10px;
+            left:-20px;
+        }
+        .controls.next{
+            right:-20px;
+            text-indent:-10px;
+            border-radius:50% 0 0 50%;
+        }
+
+        .slide-img li:target{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!--轮播图容器-->
+    <div class="slide">
+        <!--轮播图图片容器-->
+        <ul class="slide-img">
+            <li id="slide1"><a href="#"><img src="images/focus.jpg"/></a></li>
+            <li id="slide2"><a href="#"><img src="images/focus1.jpg"/></a></li>
+            <li id="slide3"><a href="#"><img src="images/focus2.jpg"/></a></li>
+            <li id="slide4"><a href="#"><img src="images/focus3.jpg"/></a></li>
+            <li id="slide5"><a href="#"><img src="images/focus4.jpg"/></a></li>
+        </ul>
+        <!-- 轮播图的按钮容器-->
+        <ul class="slide-page">
+            <li><a href="#slide1">1</a></li>
+            <li><a href="#slide2">2</a></li>
+            <li><a href="#slide3">3</a></li>
+            <li><a href="#slide4">4</a></li>
+            <li><a href="#slide5">5</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

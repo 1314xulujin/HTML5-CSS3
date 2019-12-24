@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        form{
+            width: 28%;
+            padding: 10px;
+            margin: 0 auto;
+        }
+        label{
+            cursor: pointer;
+        }
+        span{
+            margin-top: 20px;
+            width: 320px;
+            border: 1px solid red;
+            color: red;
+            line-height: 30px;
+            text-align: center;
+        }
+        form:valid{
+            border:5px solid transparent;
+        }
+        form:invalid{
+            border:5px solid red;
+        }
+        input:valid {
+            background-color: #ddffdd;
+        }
+        input:invalid {
+            background-color: #ffdddd;
+        }
+        input:required:invalid {
+            border-color: #C00000;
+        }
+        input:required {
+            border-color: #800000;
+            border-width: 3px;
+        }
+        input:valid~span{
+            display: none;
+        }
+        input:invalid~span {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <label for="url_input">请输入网址:</label>
+    <input type="url" id="url_input" />
+    <br />
+    <br />
+    <label for="email_input">请输入Emaild地址:</label>
+    <input type="email" id="email_input" required />
+    <span>表单字段填写不规范，请检查后重新输入！</span>
+</body>
+</html>

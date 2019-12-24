@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        @keyframes animate {
+            0%{
+                left: 0;
+            }
+
+            100%{
+                left: 1200px;
+            }
+        }
+
+        .box{
+            position: relative;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+
+            /*!*[必须]1.设置需要使用的动画名称 animation-name*!*/
+            /*animation-name: animate;*/
+
+            /*!*[必须]2.设置动画播放的时间 animation-duration : m / ms *!*/
+            /*animation-duration: 1s;*/
+
+            /*!*3.设置动画播放的时间曲线*!*/
+            /*animation-timing-function: ease;*/
+
+            /*!*4.设置动画的延迟 : m / ms*!*/
+            /*animation-delay: 0s;*/
+
+            /*!*5.设置动画播放的次数: 数字  / infinite *!*/
+            /*animation-iteration-count: infinite;*/
+
+            /*!*6.设置动画轮流反向播放 : alternate  *!*/
+            /*animation-direction: alternate;*/
+
+            /*//简写 : 1.动画名称 2.动画播放时间 3.时间曲线 4. 延迟 5.次数 6.轮流反向播放*/
+            animation: animate 1s cubic-bezier(0, 1.07, 0.8,-0.01) 0s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

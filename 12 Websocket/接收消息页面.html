@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>接收消息页面</title>
+    <script src="http://m.lby.link:8888/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="container">
+            
+    </div>
+    <script>
+        var container = document.querySelector("#container");
+
+        var socket = io.connect('http://m.lby.link:8888');//获取监听
+                socket.on('server',function(data){//监听服务端发送过来的事件
+                 container.innerHTML+="<br/>"+data.username + ":" + data.msg;
+             });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*1.:first-of-type 匹配在当前选择器下 ,当前层级中第一个指定类型的元素*/
+        /*#box p:first-of-type{*/
+            /*color: red;*/
+        /*}*/
+
+        /*2.:last-of-type 匹配在当前选择器下 ,当前层级中最后一个指定类型的元素*/
+        /*#box p:last-of-type{*/
+            /*color: green;*/
+        /*}*/
+
+        /*3. :first-child 匹配在当前选择器下 ,当前层级中第一个子元素*/
+        #box p:first-child{
+            background: red;
+        }
+
+        /*4. :last-child 匹配在当前选择器下 ,当前层级中最后一个子元素*!*/
+        #box p:last-child{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div>
+            <p>这是一个p标签123</p>
+            <p>这是一个p标签1232</p>
+            <div>
+                <p>这是一个p标签789</p>
+                <p>这是一个p标签7892</p>
+            </div>
+        </div>
+        <p>这是一个p标签456</p>
+        <p>这是一个p标签4562</p>
+    </div>
+</body>
+</html>

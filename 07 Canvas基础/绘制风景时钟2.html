@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 600px;
+            height: 600px;
+            margin: 50px auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="600" height="600"></canvas>
+</div>
+<script>
+    /**
+     * 绘制步骤:
+     *  1.大圆盘
+     *  2.绘制分刻度
+     *  3.绘制时刻度
+     *  4.绘制时针
+     *  5.绘制分针
+     *  6.绘制秒针
+     *  7.绘制小圆点
+     * */
+
+    var canvas = document.querySelector("#canvas");
+    var cxt = canvas.getContext("2d");
+
+    function  drawClock() {
+        cxt.clearRect(0,0,600,600);
+        //获取当前系统时间
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes();//0- 59
+        var s = date.getSeconds(); // 0- 59
+        var ms = date.getMilliseconds();//0 - 999
+
+        h %=12; //换算成12小时制
+        h += m / 60;
+
+        m += s / 60;
+        //绘制大圆盘
+        cxt.beginPath();
+        cxt.arc(300,300,280,0,Math.PI *2);
+        cxt.closePath();
+        cxt.lineWidth = 10;
+        cxt.strokeStyle ="#ccc";
+        cxt.stroke();
+
+        cxt.save();
+        //分刻度
+        cxt.translate(300,300);//平移原点
+        cxt.save();
+        for (var i=0;i<60;i++){
+            cxt.rotate(Math.PI / 180 * 6);
+            //绘制一个分刻度
+            cxt.beginPath();
+            cxt.moveTo(0,-265);
+            cxt.lineTo(0,-275);
+            cxt.strokeStyle = "cyan";
+            cxt.lineWidth = 6;
+            cxt.stroke();
+            cxt.closePath();
+        }
+        cxt.restore();
+
+        //绘制时刻度
+        cxt.save();
+        for(var i=0;i<12;i++){
+            cxt.rotate(Math.PI / 180 * 30);
+            cxt.beginPath();
+            cxt.moveTo(0,-258);
+            cxt.lineTo(0,-275);
+            cxt.strokeStyle = "cyan";
+            cxt.lineWidth = 10;
+            cxt.stroke();
+        }
+        cxt.restore();
+
+        //绘制时针
+        cxt.save();
+        cxt.beginPath();
+        cxt.rotate(Math.PI / 180 * 30 * h);
+        cxt.moveTo(0,20);
+        cxt.lineTo(0,-130);
+        cxt.lineWidth = 14;
+        cxt.strokeStyle = "blue";
+        cxt.closePath();
+        cxt.stroke();
+        cxt.restore();
+
+        //绘制分针
+        cxt.save();
+        cxt.beginPath();
+        cxt.rotate(Math.PI / 180 * 6 * m);
+        cxt.moveTo(0,20);
+        cxt.lineTo(0,-170);
+        cxt.lineWidth = 10;
+        cxt.strokeStyle = "purple";
+        cxt.closePath();
+        cxt.stroke();
+        cxt.restore();
+
+        //绘制秒针
+        cxt.save();
+        cxt.beginPath();
+        cxt.rotate(Math.PI / 180 * 6 * (s + ms/1000) );
+        cxt.moveTo(0,20);
+        cxt.lineTo(0,-220);
+        cxt.lineWidth = 4;
+        cxt.strokeStyle = "red";
+        cxt.closePath();
+        cxt.stroke();
+        //绘制小圆点 - 中心圆点
+        cxt.beginPath();
+        cxt.arc(0,0,10,0,Math.PI*2);
+        cxt.strokeStyle = "red";
+        cxt.fillStyle="yellow";
+        cxt.stroke();
+        cxt.fill();
+        cxt.closePath();
+        //绘制小圆点 - 秒针上的
+        cxt.beginPath();
+        cxt.arc(0,-190,10,0,Math.PI*2);
+        cxt.strokeStyle = "red";
+        cxt.fillStyle="yellow";
+        cxt.stroke();
+        cxt.fill();
+        cxt.closePath();
+        cxt.restore();
+        cxt.restore();
+        setTimeout(drawClock,1000 / 60);
+    }
+    drawClock();
+</script>
+</body>
+</html>

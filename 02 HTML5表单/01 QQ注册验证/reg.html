@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>仿QQ注册</title>
+  <link href="css/style.css" rel="stylesheet"/>
+ </head>
+ <body>
+	<div class="container">
+		<h2 class="reg-top"></h2>
+		<div class="reg-box">
+			<div class="reg-main">
+				<h3>注册账号</h3>
+				<form action="" method="post" class="reg-form">
+					<div class="reg-input">
+						<label>昵称</label>
+						<div class="input-box">
+							<input type="text" name="nick" id="nick" required pattern="^[\u4E00-\u9FA5\w-]{6,10}$"/>
+						</div>
+						<span id="nick-tip">长度为6-10个字符</span>
+					</div>
+					<div class="reg-input">
+						<label>密码</label>
+						<div class="input-box"><input type="password" name="psw" id="psw" required pattern="^[\w-]{6,16}$"/></div>
+						<span id="psw-tip">长度为6-16个字符</span>
+					</div>
+					<div class="reg-input">
+						<label>确认密码</label>
+						<div class="input-box"><input type="password" name="psw1" id="psw1" required pattern="^[\w-]{6,16}$"/></div>
+						<span id="psw1-tip">长度为6-16个字符</span>
+					</div>
+					<div class="reg-input">
+						<label>手机号码</label>
+						<div class="input-box"><input type="text" name="tel" id="tel" required pattern="^1[3-9]\d{9}$"/></div>
+						<span id="tel-tip">忘记密码时可用手机号找回密码</span>
+					</div>
+					<div class="reg-input">
+						<label>邮箱</label>
+						<div class="input-box"><input type="text" name="mail" id="mail" required pattern="^[A-z0-9_-]+@[A-z0-9_-]+(\.[A-z0-9_-]+)+$"/></div>
+						<span id="mail-tip"></span>
+					</div>
+					<div class="reg-input">
+						<label>年龄</label>
+						<div class="input-box"><input type="text" name="old" id="old" required pattern="(^1[2-9]|[2-9][0-9]|(^1[0-1][0-9])|120)"/></div>
+						<span id="old-tip"></span>
+					</div>
+					<div class="submit-box">
+						<button id="submit">立即注册</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    <script src="js/reg.js"></script>
+ </body>
+</html>

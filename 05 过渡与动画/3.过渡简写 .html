@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            /*简写:transition:1.过渡属性 2.时间 3.时间曲线 4.延迟*/
+            /*transition: all 0.35s ease 1s;*/
+            transition: background 2s ease 0s,transform 1s ease 0s;
+        }
+
+        .box:nth-child(1):hover{
+            background: #2aabd2;
+            border-radius: 50%;
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+<body>
+过渡 : 需要通过:事件 / 行为 / js 触发机制 来触发 ,不能主动播放
+<div class="box"></div>
+</body>
+</html>

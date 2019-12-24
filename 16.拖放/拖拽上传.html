@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            position: relative;
+            width: 600px;
+            margin: 50px auto;
+        }
+        #upload{
+            position: relative;
+            width: 600px;
+            height: 400px;
+            border: 2px solid #ccc;
+            text-align: center;
+            line-height: 400px;
+            font-size: 40px;
+            color: #999;
+            background: #f9f9f9;
+        }
+        #upload.enter{
+            background: #ddd;
+            border:2px darkcyan dashed;
+        }
+        #upload img{
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        #upload-btn{
+            border: 0;
+            display: block;
+            margin: 10px auto;
+            width: 100px;
+            height: 40px;
+            background: #2aabd2;
+            color: #fff;
+            cursor: pointer;
+        }
+        .progress{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+            display: none;
+        }
+        .progress-bar{
+            position: absolute;
+            width: 300px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 15px;
+            left: 50%;
+            top: 50%;
+            overflow: hidden;
+            transform: translate(-50%,-50%);
+        }
+        .progress-total{
+            position: absolute;
+            height: 10px;
+            left: 0;
+            width: 0%;
+            background: red;
+        }
+        .progress-count{
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="upload">
+            拖拽文件至此上传...
+        </div>
+        <div class="progress">
+            <div class="progress-bar">
+                <div class="progress-total"></div>
+            </div>
+            <div class="progress-count">0%</div>
+        </div>
+        <button id="upload-btn">立即上传</button>
+    </div>
+    <script src="js/jquery-v1.12.0.js"></script>
+    <script>
+        /**
+         *  拖拽到浏览器的文件 , 无法使用js直接操作(浏览器的安全策略 , 不让js去直接操作用户的文件系统)
+         *  虽然不能直接用js操作文件 , 但是浏览器也提供对应的API 可以间接实现文件的读取操作功能.
+         *  File 对象 = > 文件对象 (js无法处理,但是可以对应到文件系统上的某一个文件表示,仅浏览器能获取到具体的硬盘路径)
+         *
+         *   H5提供 FileReader 对象 用于读取文件对象的内容
+         *      -属性:
+         *          readyState  读取状态   DONE: 2 EMPTY: 0  LOADING: 1
+         *          result      读取内容成功的结果
+         *          error       读取错误内容
+         *     -事件:
+         *          onabort: 取消读取
+                    onerror: 读取错误
+                    onload: 读取成功
+                    onloadend: 读取结束
+                    onloadstart: 开始读取
+                    onprogress : 读取的进度事件
+                -方法:
+                    abort() 取消读取
+                    readAsText() 将内容读取为文本字符 ,只适用读取文本类型文件 (html,css,js,txt,csv ...)
+                    readAsDataURL() 将内容读取为base64编码
+                    readAsBinaryString() 将内容读取为二进制字符串  方便于传输使用,或者上传一些大文件时使用(分片)
+                    readAsArrayBuffer()  将内容读取为ArrayBuffer(内存中一块高速缓冲区,作用就是让处理速度更快)
+         *
+         * */
+
+        var upload = document.getElementById("upload");
+        //H5新增的一个FormData对象 ,用于模拟表单方式提交
+        var formdata = new FormData();
+
+        //监听拖拽目标是否已经进入上传区域
+        upload.addEventListener("dragenter",function () {
+            upload.className="enter";
+            upload.innerHTML="松手即可上传...";
+            console.log("元素已经进入目标区域...");
+        })
+        
+        upload.addEventListener("dragleave",function () {
+            upload.className="";
+            upload.innerHTML="拖拽文件至此上传...";
+        })
+        
+        upload.addEventListener("drop",function (e) {
+            console.log("当前已经把拖拽的图片放入到上传区域...",e.dataTransfer.files);
+            var file = e.dataTransfer.files[0];//获取拖拽文件的第一个文件对象 , 原始的文件对象是不能直接在http中传输
+            //显示预览图 => 调用API 读取图片内容
+            var fr = new FileReader();
+                // fr.readAsText(file);//读取为文本
+                fr.readAsDataURL(file);//读取为base64文件编码
+                // fr.readAsBinaryString(file); // 读取为二进制文本, 不会直接用来操作
+                // fr.readAsArrayBuffer(file);//可以提供一些操作使用 , 在高速缓冲区中 ,操作更快速
+                fr.onload = function () {//文件读取
+                    console.log(fr.result);
+                    // var img = new Image();
+                    //     img.src = fr.result;
+                    upload.innerHTML = '<img src="'+fr.result+'" draggable="false"/>';
+                }
+
+                formdata.append("imgs",file);//往表单数据对象中,添加需要上传的文件数据 append(后台需要的字段名,实际的数据(字符串,文件对象))
+                formdata.append("ak","fF8BDD1B2e23ECE2146636e21d0271C7");
+        });
+
+        //监听拖放的dragover事件,阻止默认行为
+        document.addEventListener("dragover",function (e) {
+            e.preventDefault();
+        })
+
+        document.addEventListener("drop",function (e) {
+            e.preventDefault();
+        })
+        
+        $("#upload-btn").click(function () {
+            $.ajax({
+                method:"post",
+                url:"https://lby.link/api/student/uploadImage",
+                contentType:false,//1.设置发送服务器的数据内容类型 ,默认:application/x-www-form-urlencoded ,但是此时是传输一个文件对象 ,所以不能使用这个 ,false代码根据上传文件类型决定
+                processData:false,//因为默认的情况下 ,ajax会把发送的数据转成查询字符串格式,但是此时上传的是一个文件对象 ,所以不需要转换 ,设置false
+                data: formdata,
+                xhr:function () {
+                    var xhr = new XMLHttpRequest();
+                    console.log(xhr);
+                    //显示进度条
+                    $(".progress").fadeIn(300);
+                    xhr.upload.onprogress = function (e) {
+                        console.log(e);
+                        var p = ((e.loaded / e.total)*100).toFixed(2) + '%'; //计算已上传的百分比
+                        //设置进度比例
+                        $('.progress-total').css("width",p);
+                        $(".progress-count").html(p);
+
+                    }
+                    xhr.upload.onload = function () {
+                        alert("上传成功!");
+                    }
+                    return xhr;
+                }
+            })
+        })
+    </script>
+</body>
+</html>

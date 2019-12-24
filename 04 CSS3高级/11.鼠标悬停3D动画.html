@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            /*background: #000;*/
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ccc;
+            margin: 50px auto;
+
+            /*设置舞台距离*/
+            perspective: 1200px;
+        }
+
+        .phone{
+            display: block;
+            width: 300px;
+            height: 437px;
+            background: url("images/phone.jpg") no-repeat 0 0 / 300px 437px ;
+            margin: 50px auto;
+
+            /*设置旋转中心点*/
+            transform-origin: 50% 50% 100px;
+            /*设置旋转*/
+            transform: rotateX(60deg) rotateY(3deg) rotateZ(-25deg);
+            /*设置阴影*/
+            box-shadow: -7px 10px 10px #333 ;
+
+            /*设置过渡动画*/
+            transition: all 0.8s;
+        }
+
+        .phone:hover{
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            box-shadow: -100px 100px 10px transparent;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <a href="" class="phone"></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border:5px dashed green;
+            margin: 10px auto;
+        }
+
+        .box:nth-child(1){
+            background: url("bg_flower.gif") no-repeat ;
+            background-size: cover;
+        }
+
+        .box:nth-child(2){
+            background: url("bg_flower.gif") no-repeat ;
+            background-size: contain;
+        }
+
+        .box:nth-child(3){
+            background: url("bg_flower.gif") no-repeat ;
+            /*background-size: 100% 50%;*/
+            background-size: 200px 150px;
+        }
+
+        /*background 所有背景简写:
+
+         background:#f00 url(../bg.jpg) no-repeat 0px 0px / 100% 50%;
+         1.颜色 2.图片 3.重复方式 4.背景定位 / 5.背景大小
+         */
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+</body>
+</html>

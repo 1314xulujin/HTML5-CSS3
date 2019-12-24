@@ -1,0 +1,821 @@
+* {
+	padding:0;
+	margin:0;
+}
+html, body {
+	height:100%;
+	overflow:hidden;
+}
+a {
+	text-decoration:none;
+}
+.nav-header {
+	position:fixed;
+	z-index:99;
+	height:90px;
+	width:100%;
+	left:0;
+	top:0;
+	background:rgba(0, 0, 0, .6);
+}
+.head-contain {
+	width:1180px;
+	height:90px;
+	margin:0 auto;
+	text-align:center;
+}
+.top-logo, .top-nav, .top-nav li, .top-right {
+	height:90px;
+	display:inline-block;
+	vertical-align:top;
+}
+.top-nav {
+	margin:0 48px;
+}
+.top-nav li {
+	line-height:90px;
+	width:90px;
+}
+.top-nav li a {
+	display:block;
+	text-align:center;
+	font-size:16px;
+	color:#fff;
+}
+.top-nav li a:hover {
+	color:#ee0223;
+}
+.top-right a {
+	display:inline-block;
+	font-size:16px;
+	text-align:center;
+	margin-top:25px;
+	border-radius:35px;
+}
+.top-right a.login {
+	width:93px;
+	height:38px;
+	line-height:38px;
+	color:#fad65c;
+	border:1px #fad65c solid;
+}
+.top-right a.login:hover {
+	color:#986b0d;
+	background:#fad65c;
+}
+.top-right a.open-vip {
+	width:140px;
+	height:40px;
+	font-weight:700;
+	line-height:40px;
+	background:#fad65c;
+	color:#986b0d;
+}
+.top-right a.open-vip:hover {
+	background:#fddc6c;
+}
+.index-wrap {
+	transition:transform ease 1s;
+}
+.index-wrap > section {
+	position:relative;
+}
+.screen-area {
+	position:absolute;
+	opacity:0;
+	filter:alpha(opacity="0");
+	width:355px;
+	height:175px;
+	top:290px;
+	left:50%;
+	margin-left:-500px;
+	background:url(../img/sprites_index.png) no-repeat 0 -258px;
+}
+.icon {
+	position:absolute;
+	left:-130px;
+	top:13px;
+	width:130px;
+	height:110px;
+	background:url(../img/sprites_index.png) no-repeat;
+}
+/**第一屏**/
+.sec1 {
+	height:834px;
+	background:url(../img/bg_1.jpg) no-repeat center top;
+	-webkit-perspective:1000px;
+	perspective:1000px;
+}
+.sec1 .sec1-title {
+	position:absolute;
+	z-index:5;
+	width:770px;
+	line-height:999;
+	overflow:hidden;
+	height:265px;
+	left:50%;
+	margin-left:-540px;
+	top:175px;
+	background:url(../img/sprites_index.png) no-repeat;
+	-webkit-animation:firstIn 0.4s ease 1;
+	-moz-animation:firstIn 0.4s ease 1;
+	-ms-animation:firstIn 0.4s ease 1;
+	animation:firstIn 0.4s ease 1;
+}
+.sec1 .sec1-info {
+	position:absolute;
+	opacity:0;
+	filter:alpha(opacity="0");
+	z-index:5;
+	width:424px;
+	height:128px;
+	left:50%;
+	top:380px;
+	margin-left:-525px;
+	line-height:999;
+	overflow:hidden;
+	background:url(../img/sprites_index.png) no-repeat -590px -268px;
+}
+.sec1 .sec1-vip {
+	position:absolute;
+	opacity:0;
+	filter:alpha(opacity="0");
+	z-index:5;
+	top:500px;
+	left:50%;
+	margin-left:-535px;
+}
+.sec1 .sec1-vip a {
+	display:inline-block;
+	margin-right:15px;
+	border-radius:26px;
+	height:50px;
+	line-height:50px;
+	font-size:20px;
+	width:196px;
+	text-align:center;
+	border:2px #fbd74f solid;
+	color:#fbd74f;
+}
+.sec1 .sec1-vip a:hover {
+	background:#fbd74f;
+	color:#9c701e;
+}
+.sec1 .sec1-vip .super-vip {
+	background:#fbd74f;
+	color:#9c701e;
+}
+.sec1 .sec1-vip .super-vip:hover {
+	background:#fee588;
+	border-color:#fee588;
+}
+.sec1 .figure-1 {
+	position:absolute;
+	width:720px;
+	height:656px;
+	left:45%;
+	top:170px;
+	background:url(../img/figure_1.png) no-repeat 100% 17px;
+}
+.sec1 .figure-1:after {
+	content:'';
+	display:block;
+	position:absolute;
+	width:25px;
+	height:25px;
+	left:394px;
+	top:188px;
+	z-index:5;
+	background:url(../img/sprites_index.png) no-repeat -526px -450px;
+	-webkit-animation:flash 2s ease infinite;
+	-moz-animation:flash 2s ease infinite;
+	-ms-animation:flash 2s ease infinite;
+	animation:flash 2s ease infinite;
+}
+/**第二屏**/
+.sec2 {
+	height:820px;
+	background:url(../img/bg_2.jpg) no-repeat center top;
+}
+.sec2 .icon-feature {
+	background-position:-685px -450px;
+}
+.sec2 .figure-2 {
+	position:absolute;
+	z-index:5;
+	width:720px;
+	height:897px;
+	left:45%;
+	top:-66px;
+	background:url(../img/figure_2.png) no-repeat -427px 155px;
+}
+.figure-list a {
+	position:absolute;
+	z-index:5;
+	width:100px;
+	height:100px;
+	left:50%;
+	background:url(../img/sprites_function_feature.png) no-repeat;
+}
+.figure-list a.icon-1 {
+	background-position:0 0;
+	top:595px;
+	margin-left:100px;
+}
+.figure-list a.icon-2 {
+	background-position:0 -110px;
+	top:595px;
+	margin-left:330px;
+	transform:scale(1.3);
+}
+.figure-list a.icon-3 {
+	background-position:0 -220px;
+	top:500px;
+	margin-left:500px;
+}
+.figure-list a.icon-4 {
+	background-position:0 -330px;
+	z-index:1;
+	top:365px;
+	margin-left:420px;
+	transform:scale(0.8);
+}
+.figure-list a.icon-5 {
+	background-position:0 -440px;
+	z-index:1;
+	top:305px;
+	margin-left:250px;
+	transform:scale(0.6);
+}
+.figure-list a.icon-6 {
+	background-position:0 -550px;
+	z-index:1;
+	top:313px;
+	margin-left:90px;
+	transform:scale(0.4);
+}
+.figure-list a.icon-7 {
+	background-position:0 -880px;
+	top:545px;
+	margin-left:-90px;
+	transform:scale(0.7);
+}
+.figure-list a.icon-8 {
+	background-position:0 -770px;
+	top:450px;
+	margin-left:-170px;
+	transform:scale(0.6);
+}
+.figure-list a.icon-9 {
+	background-position:0 -660px;
+	top:350px;
+	margin-left:-70px;
+	transform:scale(0.5);
+}
+/**第三屏**/
+.sec3 {
+	height:779px;
+	background:url(../img/bg_3.jpg) no-repeat center top;
+}
+.sec3 .sec3-area {
+	background-position:0 -450px;
+}
+.sec3 .icon-game {
+	background-position:-685px -570px;
+}
+.figure-3 {
+	position:absolute;
+	width:527px;
+	height:758px;
+	left:55%;
+	top:2px;
+	z-index:4;
+	background:url(../img/figure_3.png) no-repeat -666px 100px
+}
+.figure-3-mask {
+	position:absolute;
+	left:50%;
+	bottom:17px;
+	margin-left:100px;
+	width:600px;
+	height:156px;
+	z-index:5;
+	background:url(../img/bg_3_mask.png) no-repeat;
+}
+.figure1-list span {
+	display:block;
+	position:absolute;
+	left:55%;
+	z-index:5;
+	transform-origin:center center;
+}
+.figure1-list .sec3-icon {
+	opacity:0;
+	filter:alpha(opacity="0");
+	background:url(../img/sprites_game_feature.png) no-repeat;
+}
+.figure1-list .sec3-icon1 {
+	opacity:0;
+	filter:alpha(opacity="0");
+	background:url(../img/sprites_game_feature2.png) no-repeat;
+}
+.figure1-list .icon-monitor {
+	width:335px;
+	height:300px;
+	z-index:6;
+	margin-left:-226px;
+	top:494px;
+}
+.figure1-list .icon-character1 {
+	width:237px;
+	height:285px;
+	margin-left:-299px;
+	top:380px;
+	background-position:-204px -33px;
+}
+.figure1-list .icon-character2 {
+	width:191px;
+	height:382px;
+	margin-left:-188px;
+	top:295px;
+	background-position:-426px 0;
+}
+.figure1-list .icon-character3 {
+	width:260px;
+	height:385px;
+	z-index:4;
+	margin-left:-165px;
+	top:187px;
+	background-position:-382px -227px;
+}
+.figure1-list .icon-character4 {
+	width:337px;
+	height:369px;
+	margin-left:-120px;
+	top:220px;
+	background-position:0 -305px;
+}
+.figure1-list .icon-character5 {
+	width:193px;
+	height:162px;
+	margin-left:70px;
+	top:500px;
+	background-position:-413px -30px;
+}
+.figure1-list .icon-shine {
+	width:407px;
+	height:355px;
+	margin-left:-224px;
+	top:332px;
+	background-position:10px -389px;
+}
+.figure1-list .icon-car {
+	width:147px;
+	height:82px;
+	margin-left:455px;
+	top:627px;
+	background-position:0 0;
+}
+.figure1-list .icon-flame {
+	width:207px;
+	height:159px;
+	z-index:4;
+	margin-left:375px;
+	top:564px;
+	background-position:0 -102px;
+}
+.sec3 .light {
+	opacity:0;
+	filter:alpha(opacity="0");
+	position:absolute;
+	z-index:10;
+	width:1173px;
+	height:604px;
+	left:50%;
+	top:165px;
+	margin-left:-400px;
+	background:url(../img/sprites_decoration2.png) no-repeat;
+}
+/**第四屏**/
+.sec4 {
+	height:818px;
+	background:url(../img/bg_4.jpg) no-repeat center top;
+}
+.sec4 .sec4-area {
+	background-position:0 -625px;
+}
+.sec4 .icon-life {
+	background-position:-685px -690px;
+}
+.sec4 .figure-4 {
+	position:absolute;
+	left:45%;
+	top:-35px;
+	width:700px;
+	height:864px;
+	z-index:5;
+	background:url(../img/figure_4.png) no-repeat -562px 160px;
+}
+.sec4 .figure-4-mask {
+	position:absolute;
+	left:50%;
+	bottom:-13px;
+	margin-left:-115px;
+	width:750px;
+	height:150px;
+	z-index:5;
+	background:url(../img/bg_4_mask.png) no-repeat;
+}
+.sec4 .figure2-list {
+	position:absolute;
+	width:875px;
+	height:693px;
+	top:92px;
+	z-index:5;
+	left:50%;
+	margin-left:-196px;
+	transform:rotate(-90deg) scale(0);
+}
+.figure2-list span {
+	display:block;
+	position:absolute;
+	z-index:5;
+	width:150px;
+	height:150px;
+	background:url(../img/sprites_life_feature.png) no-repeat;
+}
+.sec4 .icon-watch {
+	top:-10px;
+	left:225px;
+	z-index:4;
+	background-position:0 -150px;
+}
+.sec4 .icon-headset {
+	top:45px;
+	left:60px;
+	z-index:4;
+	background-position:0 0;
+}
+.sec4 .icon-shoe {
+	top:370px;
+	left:-25px;
+	z-index:4;
+	background-position:0 -300px;
+}
+.sec4 .icon-glasses {
+	top:525px;
+	left:200px;
+	background-position:0 -750px;
+}
+.sec4 .icon-bag {
+	top:540px;
+	left:500px;
+	background-position:0 -900px;
+}
+.sec4 .icon-perfume {
+	top:415px;
+	left:690px;
+	background-position:0 -1050px;
+}
+.sec4 .icon-hat {
+	top:200px;
+	left:700px;
+	z-index:4;
+	background-position:0 -600px;
+}
+.sec4 .icon-dress {
+	top:45px;
+	left:600px;
+	z-index:1;
+	background-position:0 -450px;
+}
+/**第五屏**/
+.sec5 {
+	height:749px;
+	background:url(../img/bg_5.jpg) no-repeat center top;
+}
+.sec5-area {
+	background-position:0 -820px;
+}
+.sec5 .icon-makeup {
+	background-position:-685px -810px;
+}
+.figure-5 {
+	position:absolute;
+	left:50%;
+	top:60px;
+	width:570px;
+	height:690px;
+	z-index:5;
+	background:url(../img/figure_5.png) no-repeat;
+}
+.figure3-list span {
+	position:absolute;
+	left:50%;
+	z-index:5;
+	background:url(../img/sprites_makeup_feature.png) no-repeat;
+}
+.figure3-list .icon-bird {
+	width:100px;
+	height:110px;
+	top:247px;
+	margin-left:375px;
+}
+.figure3-list .icon-babyq {
+	width:138px;
+	height:134px;
+	top:595px;
+	margin-left:470px;
+	background-position:0 -121px;
+}
+.figure3-list .icon-bear {
+	width:160px;
+	height:210px;
+	top:480px;
+	margin-left:-95px;
+	background-position:0 -400px;
+}
+.figure3-list .icon-qana {
+	width:138px;
+	height:130px;
+	top:590px;
+	margin-left:-210px;
+	background-position:0 -271px;
+}
+.figure3-list .icon-dialog1 {
+	width:190px;
+	height:90px;
+	top:400px;
+	margin-left:50px;
+	background-position:0 -626px;
+}
+.figure3-list .icon-dialog2 {
+	width:285px;
+	height:85px;
+	top:500px;
+	margin-left:300px;
+	background-position:0 -740px;
+}
+/**底部**/
+.ui-footer {
+	background:#302f37;
+	text-align:center;
+	height:320px;
+}
+.ui-footer nav ul {
+	margin:60px 0;
+}
+.ui-footer nav ul, .ui-footer li {
+	display:inline-block;
+}
+.ui-footer li {
+	width:100px;
+	height:100px;
+	margin:0 5px;
+	font-size:14px;
+}
+.ui-footer li a {
+	display:block;
+	color:#7e7e7e;
+	padding-top:85px;
+	background:url(../img/sprites_footer.png) no-repeat;
+}
+.ui-footer li:first-child a {
+	background-position:0 0;
+}
+.ui-footer li:first-child a:hover {
+	background-position:-100px 0;
+}
+.ui-footer li:nth-child(2) a {
+background-position:0 -100px;
+}
+.ui-footer li:nth-child(2) a:hover {
+background-position:-100px -100px;
+}
+.ui-footer li:nth-child(3) a {
+background-position:0 -200px;
+}
+.ui-footer li:nth-child(3) a:hover {
+background-position:-100px -200px;
+}
+.ui-footer li:nth-child(4) a {
+background-position:0 -300px;
+}
+.ui-footer li:nth-child(4) a:hover {
+background-position:-100px -300px;
+}
+.ui-footer li:nth-child(5) a {
+background-position:0 -400px;
+}
+.ui-footer li:nth-child(5) a:hover {
+background-position:-100px -400px;
+}
+.ui-footer li:nth-child(6) a {
+background-position:0 -500px;
+}
+.ui-footer li:nth-child(6) a:hover {
+background-position:-100px -500px;
+}
+.ui-footer li:last-child a {
+	background-position:0 -600px;
+}
+.ui-footer li:last-child a:hover {
+	background-position:-100px -600px;
+}
+.ui-footer p {
+	font-size:12px;
+	line-height:1.8;
+	color:#9d9d9d;
+}
+/****动画****/
+.current .screen-area {
+	-webkit-animation:fadeInUp 1s ease 1 both;
+	-moz-animation:fadeInUp 1s ease 1 both;
+	-ms-animation:fadeInUp 1s ease 1 both;
+	animation:fadeInUp 1s ease 1 both;
+}
+.current .icon {
+	-webkit-animation:rollToRight 1s ease 1 both;
+	-moz-animation:rollToRight 1s ease 1 both;
+	-ms-animation:rollToRight 1s ease 1 both;
+	animation:rollToRight 1s ease 1 both;
+}
+/**第一屏**/
+.current .sec1-info, .current .sec1-vip {
+	-webkit-animation:fadeInUp 1s ease 0.5s 1 both;
+	-moz-animation:fadeInUp 1s ease 0.5s 1 both;
+	-ms-animation:fadeInUp 1s ease 0.5s 1 both;
+	animation:fadeInUp 1s ease 0.5s 1 both;
+}
+/**第二屏**/
+.current .icon-1 {
+	-webkit-animation:icon1 0.5s linear both;
+	-moz-animation:icon1 0.5s linear both;
+	-ms-animation:icon1 0.5s linear both;
+	animation:icon1 0.5s linear both;
+}
+.current .icon-2 {
+	-webkit-animation:icon2 0.5s linear both;
+	-moz-animation:icon2 0.5s linear both;
+	-ms-animation:icon2 0.5s linear both;
+	animation:icon2 0.5s linear both;
+}
+.current .icon-3 {
+	-webkit-animation:icon3 0.5s linear both;
+	-moz-animation:icon3 0.5s linear both;
+	-ms-animation:icon3 0.5s linear both;
+	animation:icon3 0.5s linear both;
+}
+.current .icon-4 {
+	-webkit-animation:icon4 0.5s linear both;
+	-moz-animation:icon4 0.5s linear both;
+	-ms-animation:icon4 0.5s linear both;
+	animation:icon4 0.5s linear both;
+}
+.current .icon-5 {
+	-webkit-animation:icon5 0.5s linear both;
+	-moz-animation:icon5 0.5s linear both;
+	-ms-animation:icon5 0.5s linear both;
+	animation:icon5 0.5s linear both;
+}
+.current .icon-6 {
+	-webkit-animation:icon6 0.5s linear both;
+	-moz-animation:icon6 0.5s linear both;
+	-ms-animation:icon6 0.5s linear both;
+	animation:icon6 0.5s linear both;
+}
+.current .icon-7 {
+	-webkit-animation:icon7 0.5s linear both;
+	-moz-animation:icon7 0.5s linear both;
+	-ms-animation:icon7 0.5s linear both;
+	animation:icon7 0.5s linear both;
+}
+.current .icon-8 {
+	-webkit-animation:icon8 0.5s linear both;
+	-moz-animation:icon8 0.5s linear both;
+	-ms-animation:icon8 0.5s linear both;
+	animation:icon8 0.5s linear both;
+}
+.current .icon-9 {
+	-webkit-animation:icon9 0.5s linear both;
+	-moz-animation:icon9 0.5s linear both;
+	-ms-animation:icon9 0.5s linear both;
+	animation:icon9 0.5s linear both;
+}
+/**第三屏**/
+.current .icon-monitor {
+	-webkit-animation:fadeInLeft 0.5s ease both;
+	-moz-animation:fadeInLeft 0.5s ease both;
+	-ms-animation:fadeInLeft 0.5s ease both;
+	animation:fadeInLeft 0.5s ease both;
+}
+.current .icon-character1 {
+	-webkit-animation:fadeInUp2 0.5s ease 0.4s both;
+	-moz-animation:fadeInUp2 0.5s ease 0.4s both;
+	-ms-animation:fadeInUp2 0.5s ease 0.4s both;
+	animation:fadeInUp2 0.5s ease 0.4s both;
+}
+.current .icon-character2 {
+	-webkit-animation:fadeInUp2 0.5s ease 0.5s both;
+	-moz-animation:fadeInUp2 0.5s ease 0.5s both;
+	-ms-animation:fadeInUp2 0.5s ease 0.5s both;
+	animation:fadeInUp2 0.5s ease 0.5s both;
+}
+.current .icon-character3 {
+	-webkit-animation:fadeInUp2 0.5s ease 0.6s both;
+	-moz-animation:fadeInUp2 0.5s ease 0.6s both;
+	-ms-animation:fadeInUp2 0.5s ease 0.6s both;
+	animation:fadeInUp2 0.5s ease 0.6s both;
+}
+.current .icon-character4 {
+	-webkit-animation:fadeInLeft 0.5s ease 0.7s both;
+	-moz-animation:fadeInLeft 0.5s ease 0.7s both;
+	-ms-animation:fadeInLeft 0.5s ease 0.7s both;
+	animation:fadeInLeft 0.5s ease 0.7s both;
+}
+.current .icon-character5 {
+	-webkit-animation:fadeInLeft 0.5s ease 0.8s both;
+	-moz-animation:fadeInLeft 0.5s ease 0.8s both;
+	-ms-animation:fadeInLeft 0.5s ease 0.8s both;
+	animation:fadeInLeft 0.5s ease 0.8s both;
+}
+.current .icon-shine {
+	-webkit-animation:fadeIn 0.5s ease 0.2s both;
+	-moz-animation:fadeIn 0.5s ease 0.2s both;
+	-ms-animation:fadeIn 0.5s ease 0.2s both;
+	animation:fadeIn 0.5s ease 0.2s both;
+}
+.current .icon-car {
+	-webkit-animation:fadeInLeft 0.8s ease 1.2s both;
+	-moz-animation:fadeInLeft 0.8s ease 1.2s both;
+	-ms-animation:fadeInLeft 0.8s ease 1.2s both;
+	animation:fadeInLeft 0.8s ease 1.2s both;
+}
+.current .icon-flame {
+	-webkit-animation:fadeIn 0.5s ease 1s both;
+	-moz-animation:fadeIn 0.5s ease 1s both;
+	-ms-animation:fadeIn 0.5s ease 1s both;
+	animation:fadeIn 0.5s ease 1s both;
+}
+.current .light {
+	-webkit-animation:fadeIn 0.8s ease 1.2s both;
+	-moz-animation:fadeIn 0.8s ease 1.2s both;
+	-ms-animation:fadeIn 0.8s ease 1.2s both;
+	animation:fadeIn 0.8s ease 1.2s both;
+}
+/**第四屏**/
+.current .figure2-list {
+	-webkit-animation:rotateAndZoomOut 0.8s ease both;
+	-moz-animation:rotateAndZoomOut 0.8s ease both;
+	-ms-animation:rotateAndZoomOut 0.8s ease both;
+	animation:rotateAndZoomOut 0.8s ease both;
+}
+.current .icon-watch, .current .icon-shoe, .current .icon-bag, .current .icon-hat {
+	-webkit-animation:randomMove1 5s linear infinite;
+	-moz-animation:randomMove1 5s linear infinite;
+	-ms-animation:randomMove1 5s linear infinite;
+	animation:randomMove1 5s linear infinite;
+}
+.current .icon-headset, .current .icon-glasses, .current .icon-perfume, .current .icon-dress {
+	-webkit-animation:randomMove2 5s linear infinite;
+	-moz-animation:randomMove2 5s linear infinite;
+	-ms-animation:randomMove2 5s linear infinite;
+	animation:randomMove2 5s linear infinite;
+}
+/**第五屏**/
+.current .icon-bird {
+	-webkit-animation:fadeInUp2 0.8s ease 0.5s both;
+	-moz-animation:fadeInUp2 0.8s ease 0.5s both;
+	-ms-animation:fadeInUp2 0.8s ease 0.5s both;
+	animation:fadeInUp2 0.8s ease 0.5s both;
+}
+.current .icon-babyq {
+	-webkit-animation:bounceInRight 0.8s ease 0.1s both;
+	-moz-animation:bounceInRight 0.8s ease 0.1s both;
+	-ms-animation:bounceInRight 0.8s ease 0.1s both;
+	animation:bounceInRight 0.8s ease 0.1s both;
+}
+.current .icon-bear {
+	-webkit-animation:bounceInLeft 0.8s ease both;
+	-moz-animation:bounceInLeft 0.8s ease both;
+	-ms-animation:bounceInLeft 0.8s ease both;
+	animation:bounceInLeft 0.8s ease both;
+}
+.current .icon-qana {
+	-webkit-animation:bounceInLeft 0.8s ease 0.5s both;
+	-moz-animation:bounceInLeft 0.8s ease 0.5s both;
+	-ms-animation:bounceInLeft 0.8s ease 0.5s both;
+	animation:bounceInLeft 0.8s ease 0.5s both;
+}
+.current .icon-dialog1 {
+	-webkit-animation:bounceIn 0.8s ease both;
+	-moz-animation:bounceIn 0.8s ease both;
+	-ms-animation:bounceIn 0.8s ease both;
+	animation:bounceIn 0.8s ease both;
+}
+.current .icon-dialog2 {
+	-webkit-animation:bounceIn 0.8s ease 0.5s both;
+	-moz-animation:bounceIn 0.8s ease 0.5s both;
+	-ms-animation:bounceIn 0.8s ease 0.5s both;
+	animation:bounceIn 0.8s ease 0.5s both;
+}

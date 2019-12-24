@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/animate.min.css">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        #slide{
+            width: 100%;
+            height: 100%;
+
+            transition: all 600ms;
+            /*transform: translateY(-100%);*/
+        }
+
+        #slide section{
+            height: 100%;
+            text-align: center;
+            line-height: 600px;
+            font-size: 100px;
+            color: #fff;
+            text-shadow: 0 0 5px #999;
+        }
+
+        #slide section:nth-child(1){
+            background-color: #FFEFD5;
+        }
+        #slide section:nth-child(2){
+            background-color: #FFB5C5;
+        }
+        #slide section:nth-child(3){
+            background-color: #F5DEB3;
+        }
+        #slide section:nth-child(4){
+            background-color: #CDCD00;
+        }
+        #slide section:nth-child(5){
+            background-color: #B2DFEE;
+        }
+        #slide section:nth-child(6){
+            background-color: #EE6AA7;
+        }
+        #slide section:nth-child(7){
+            background-color: #43CD80;
+        }
+
+        @keyframes p1 {
+            0%{
+                transform: scale(0) rotate(720deg);
+            }
+            80%{
+                transform: scale(2.5);
+            }
+            100%{
+                transform: scale(1.5) rotate(0deg);
+            }
+        }
+
+        #slide section:nth-child(1).on p{
+            animation: p1 1.5s both;
+        }
+    </style>
+</head>
+<body>
+    <section id="slide">
+        <section class="animated bounce">
+            <p>第1屏</p>
+        </section>
+        <section class="animated">第2屏</section>
+        <section class="animated">第3屏</section>
+        <section class="animated">第4屏</section>
+        <section class="animated">第5屏</section>
+        <section class="animated">第6屏</section>
+        <section class="animated">第7屏</section>
+    </section>
+    <script src="js/scroll.js"></script>
+</body>
+</html>

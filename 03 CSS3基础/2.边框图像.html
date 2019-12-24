@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            /*需要先设置边框*/
+            border-width: 20px;
+            border-style: solid;
+
+            /*1.设置边框图片的路径*/
+            border-image-source: url("border.png");
+            /*2.设置边框图片的向内偏移量*/
+            /*border-image-slice: 26 13 13;*/
+            border-image-slice: 26;
+            /*3.设置图片边框的宽度*/
+            border-image-width: 26px;
+            /*4.设置图片边框 ,超出边框的量*/
+            border-image-outset: 6px;
+            /*5.设置图片边框的平铺方式 :拉伸  stretch \ 平铺 repeat \ 铺满 round */
+            border-image-repeat: stretch;
+        }
+
+        .box2{
+            margin-top: 50px;
+            width: 400px;
+            height: 240px;
+            border-width: 10px 8px;
+            border-style: solid;
+            border-image: url("border_image_button.png") 10 8;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box">ssssss</div>
+    <div class="box2">这是一个聊天气泡</div>
+</body>
+</html>

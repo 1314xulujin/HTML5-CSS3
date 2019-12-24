@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // console.log(window.navigator.geolocation);
+    //兼容性问题 IE9+
+    if(navigator.geolocation){
+        var geolocation = navigator.geolocation;
+        //直接调用H5新增的定位接口
+        geolocation.getCurrentPosition(function(position){
+            //定位成功回调
+            console.log(position);
+            /*
+                返回 定位的成功信息:
+                  position.coords = {
+                    latitude:纬度,
+                    longitude:经度,
+                    accuracy:位置精度,
+                    altitude:海拔,
+                    altitudeAccuracy:海拔精度,
+                    heading:方向,
+                    speed:速度
+                  }
+             */
+            document.write("经度:"+ position.coords.longitude +"<br/>纬度:"+position.coords.latitude);
+        },function (error) {
+           //定位失败回调
+            console.log("定位失败:","错误码:",error.code,"错误提示:",error.message);
+        },{timeout:30000});
+
+        // alert("支持H5定位!");
+        //支持: pc 会通过浏览器内置的定位服务向浏览器厂商调取定位信息
+        //移动端 : 直接调用移动设备的GPS定位 (需要开启GPS)
+
+    }else{
+        // alert("不支持!!!");
+        //如果不支持 , 可以采用定位接口, 获取当前的城市
+        // https://ip.seeip.org/geoip
+        //使用ajax 调用接口即可获取定位数据 , 但是一般返回的是城市信息 ,没有具体的
+    }
+</script>
+</body>
+</html>

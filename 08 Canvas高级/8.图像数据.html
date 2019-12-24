@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas");
+    var cxt =  canvas.getContext("2d");
+
+    //图像数据 : canvas画布中所有像素点信息,数据  imageData   800  * 800 = 64万 像素点
+    //每一个像素点的信息构成由: R G B A 构成 ,数据中就有 256万个数据
+    var imageData = cxt.getImageData(0,0,800,800); //获取canvas画布中 0 0 位置开始 ,宽高 为800 区域的像素信息
+        imageData.data[0] = 255;//第一个像素点的R
+        imageData.data[1] = 255;//第一个像素点的G
+        imageData.data[2] = 0;//第一个像素点的B
+        imageData.data[3] = 255;//第一个像素点的A
+
+    //将图像数据放置到canvas中 (绘制)
+    cxt.putImageData(imageData,0,0);
+    console.log(imageData);
+</script>
+</body>
+</html>

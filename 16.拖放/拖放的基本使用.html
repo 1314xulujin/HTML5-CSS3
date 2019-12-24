@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖放功能</title>
+    <style>
+        .box{
+            width: 400px;
+            height: 260px;
+            border: 1px solid red;
+            display: inline-block;
+        }
+        #pic{
+            width: 100px;
+            height: 100px;
+            background: #1b6d85;
+        }
+    </style>
+</head>
+<body>
+   <div class="box" id="box1">
+       <div id="pic" draggable="true" ondragstart="dragstart()" ondrag="drag()" ondragend="dragend()"></div>
+   </div>
+   <!--<div class="box" id="box2" ondragover="dragover()"></div>-->
+   <div class="box" id="box2" ondragover="dragover(event)" ondragenter="dragenter()" ondragleave="dragleave()" ondrop="drop(event)"></div>
+<script>
+    //1.首先给需要拖放的元素设置 draggable="true"
+
+    //开始拖放事件 - ondragstart
+    function dragstart(){
+        console.log("开始拖放...");
+    }
+
+    //拖动事件 - ondrag
+    function drag() {
+        console.log("正在拖动...");
+    }
+
+    //拖动元素进入某一可放置区域事件 - ondragover , 进入目标区域后会一直触发(与ondrag事件就一样触发)
+    function dragover(e) {
+        e.preventDefault();//阻止浏览器拖放一些文本和图片自动打开新的标签页等默认行为
+        console.log("目标进入可放置区域...");
+    }
+
+    //拖动元素进入某一可放置区域事件 - ondragenter 进入目标区域后触发一次
+    function dragenter() {
+        console.log("目标进入可放置区域一次...");
+    }
+
+    //拖动元素进入目标区域后又离开事件- ondrageleave 
+    function dragleave() {
+        console.log("已经离开目标区域...");
+    }
+    
+    //拖动元素进入目标区域后松手释放时触发 - ondrop 
+    function drop(e) {
+        // e.preventDefault();//阻止浏览器拖放一些文本和图片自动打开新的标签页等默认行为
+        console.log("松手释放...");
+    }
+    
+    //当目标元素已经不再是拖放状态时触发 - ondragend
+    function dragend() {
+        console.log("已经松开手,不再拖放...");
+    }
+    
+    // function dragexit() {
+    //     console.log('拖放结束...')
+    // }
+    //
+    // document.addEventListener("dragexit", function( event ) {
+    //     console.log('拖放结束...');
+    // }, false);
+</script>
+</body>
+</html>

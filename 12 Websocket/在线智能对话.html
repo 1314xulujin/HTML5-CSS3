@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在线智能对话</title>
+    <style>
+        body{
+            font-family:"微软雅黑";
+            font-size: 12px;
+        }
+        .container{
+            position: relative;
+            width: 60%;
+            margin: 0 auto;
+            padding: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 90vh;
+
+        }
+        #chat-box{
+            height: 90%;
+            overflow: auto;
+            padding-bottom:20px;
+        }
+        .chat{
+            position: relative;
+            padding: 15px;
+            width: 100%;
+            max-width: 60%;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .chat.other{
+            float: left;
+            background:#2aabd2;
+        }
+        .chat.self{
+            float: right;
+            background: #48ca09;
+        }
+        .chat.system{
+            width: auto;
+            max-width: 80%;
+            color: #999;
+            margin: 0px auto;
+            background: none;
+            text-align: center;
+        }
+        .chat.system span{
+            background: #f1f1f1;
+            /*display: inline-block;*/
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+        .chat .date{
+            position: absolute;
+            top: 3px;
+            left:0px;
+            color: #fff;
+            text-align: left;
+            padding-left: 20px;
+            font-size: 12px;
+        }
+
+        .chat .info{
+            padding-top: 10px;
+            color: #333;
+        }
+        .msg-box:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #send-box{
+            position: absolute;
+            bottom: 0;
+            padding: 5px 10px;
+            width: 100%;
+            background: #2aabd2;
+        }
+
+        #send-box input{
+            padding: 5px 8px;
+            border: 1px solid #ccc;
+            width: 50%;
+        }
+        #send-box button{
+            border: 0;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+        #send-box button:hover{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="chat-box"></div>
+        <div id="send-box">
+            <input type="text" id="msg">
+            <button class="send">发送</button>
+            <button class="close">断开</button>
+            <button class="reconnect">重新连接</button>
+        </div>
+    </div>
+    <script src="js/jquery-v1.12.0.js"></script>
+    <script src="js/moment.js"></script>
+    <script>
+        /**
+         * 每次发完消息, 滚动最后一条记录 : 滚动距离 = 最后一条消息 距离聊天窗口容器的顶部距离(包括滚动距离)
+         * */
+        var ws = null;// ws 实例对象
+
+        //定义一个连接方法
+        function connect(){
+            ws = new WebSocket("ws://172.16.4.1:8000");
+            //绑定一些事件
+            ws.onopen = function () {
+                writeSystemMessage("已经与服务器建立连接...");
+            }
+            ws.onclose = function () {
+                writeSystemMessage("您已经与服务器断开连接...");
+            }
+
+            ws.onmessage = function (e) {
+                writeChatMessage(e.data,"other");
+            }
+            
+            ws.onerror = function () {
+                writeSystemMessage("网络异常,请重新连接...");
+            }
+        }
+        //定义一个生成系统消息的方法
+        function writeSystemMessage(msg){
+            var str = $("<div class='msg-box'><div class='chat system'><span>"+moment(new Date()).format('YYYY-MM-DD HH:mm:ss')+" " + msg+"</span></div></div>");
+            $("#chat-box").append(str);
+            scrollLastMessage();
+            // console.log(msg);
+        }
+        //定义一个写入聊天信息的方法
+        function writeChatMessage(msg,role){ // msg 消息 , role 发送消息角色
+            var str = $("<div class='msg-box'><div class='chat "+role+"'><div class='date'>"+moment(new Date()).format('YYYY-MM-DD HH:mm:ss')+"</div><div class='info'>"+msg+"</div></div></div>");
+            $("#chat-box").append(str);
+            scrollLastMessage();
+        }
+        //定义一个滚动到最后一条消息位置
+        function scrollLastMessage(){
+            //先获取最后一条消息距离网页顶部的距离
+            var topH = $(".msg-box:last")[0].offsetTop;
+            //给消息盒子设置滚动距离
+            $("#chat-box").scrollTop(topH);
+        }
+        //进入聊天页面 ,自动连接
+        connect();
+        //绑定发送消息事件
+        $(".send").click(function(){
+            if(ws.readyState==1){
+                var msg = $("#msg").val();
+                writeChatMessage(msg,"self");
+                //向服务器发送消息
+                ws.send(msg);
+                $("#msg").val("");
+            }else{
+                writeSystemMessage("网络异常,请尝试重新连接...")
+            }
+
+        })
+        //绑定断开连接
+        $(".close").click(function(){
+            if(ws.readyState!=3){
+                ws.close();//关闭连接
+            }
+        })
+        //重新连接
+        $(".reconnect").click(connect);
+    </script>
+</body>
+</html>

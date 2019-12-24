@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<!--<a href="img/a.png" download="sss">下载图片</a>-->
+<div class="container">
+    <canvas id="canvas" width="800" height="800"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById("canvas");
+    var cxt =  canvas.getContext("2d");
+
+    //设置字体样式 类似于css 中的font 样式
+    cxt.font="italic bold 50px 微软雅黑";
+
+    //设置字体对齐 - > css   left / center / right
+    cxt.textAlign="center";
+
+    cxt.fillStyle = "red";
+    //设置文字的垂直对齐 top  / middle / bottom
+    cxt.textBaseline = "middle";
+    cxt.fillText("教育改变生活!",400,100);
+
+    cxt.strokeText("教育改变生活!",400,400);
+
+    //双击保存文件
+    canvas.ondblclick = function(){
+        // toDataURL(图片类型,压缩的比例值) , 默认 0.92  = > 用于实现图片压缩功能
+        var img = canvas.toDataURL("image/jpeg",0.92); //导出base64 编码图片
+        // console.log(img);
+        var a = document.createElement("a");
+            a.href = img;
+            a.download = new Date().getTime();
+            //模拟点击
+            a.click();
+    }
+</script>
+</body>
+</html>

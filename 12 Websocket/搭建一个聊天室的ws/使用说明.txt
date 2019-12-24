@@ -1,0 +1,9 @@
+1.把这两个php文件 ,放到 xampp 的安装目录下的 php 的目录下即可
+
+2.要在cmd 命令工具下 ,进入到e:
+	然后 cd  xampp/php  进入到xampp/php 目录
+
+需要修改一下配置中的ip 换成自己的ip ,在 server.php 中修改对应的ip 和端口号
+
+3.启动服务
+php.exe server.php
